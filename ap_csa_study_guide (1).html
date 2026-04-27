@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Computer Science A — Complete Study Guide (2026)</title>
+<style>
+  :root {
+    --blue: #185FA5; --blue-light: #E6F1FB; --blue-dark: #0C447C;
+    --green: #0F6E56; --green-light: #E1F5EE;
+    --amber: #854F0B; --amber-light: #FAEEDA;
+    --red: #A32D2D; --red-light: #FCEBEB;
+    --bg: #ffffff; --bg2: #F8F8F6; --bg3: #F1EFE8;
+    --text: #1a1a18; --text2: #5F5E5A;
+    --border: #D3D1C7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.75; }
+  .page { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  .header { text-align: center; padding: 2.5rem 0 2rem; border-bottom: 2px solid var(--text); margin-bottom: 2.5rem; }
+  .header h1 { font-size: 2.1rem; letter-spacing: -0.5px; }
+  .header .subtitle { font-family: 'Courier New', monospace; font-size: 13px; color: var(--text2); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .exam-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 1rem; }
+  .pill { font-family: 'Courier New', monospace; font-size: 12px; padding: 3px 10px; border: 1px solid var(--border); border-radius: 99px; color: var(--text2); }
+  .pill.hi { background: var(--blue-light); color: var(--blue-dark); border-color: #B5D4F4; }
+
+  .section { margin-bottom: 3.5rem; }
+  .section-title { font-size: 1.45rem; font-weight: bold; border-bottom: 2px solid var(--text); padding-bottom: 0.4rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .section-num { font-family: 'Courier New', monospace; font-size: 12px; background: var(--text); color: white; padding: 2px 9px; border-radius: 3px; flex-shrink: 0; }
+
+  .subsection { margin-bottom: 2rem; }
+  .subsection h3 { font-size: 1.05rem; margin-bottom: 0.65rem; color: var(--blue-dark); font-family: 'Courier New', monospace; border-left: 3px solid var(--blue); padding-left: 10px; }
+  p { margin-bottom: 0.8rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 0.8rem; }
+  li { margin-bottom: 0.3rem; line-height: 1.7; }
+
+  pre, code { font-family: 'Courier New', monospace; }
+  code { background: var(--bg3); padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+  pre {
+    background: #1a1d23; color: #abb2bf;
+    border-radius: 6px; padding: 1rem 1.25rem;
+    font-size: 13px; line-height: 1.7;
+    overflow-x: auto; margin: 0.6rem 0 1rem;
+    border-left: 3px solid var(--blue);
+  }
+  .kw { color: #61afef; }
+  .cm { color: #5c6370; font-style: italic; }
+  .str { color: #98c379; }
+  .num { color: #d19a66; }
+  .cls { color: #e5c07b; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0.6rem 0 1.1rem; }
+  th { background: var(--bg3); text-align: left; padding: 7px 10px; font-size: 12px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; border: 1px solid var(--border); }
+  td { padding: 7px 10px; border: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+  tr:nth-child(even) td { background: var(--bg2); }
+
+  .tip   { background: var(--blue-light);  border-left: 4px solid var(--blue);  border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin: 0.8rem 0; font-size: 14px; color: var(--blue-dark); }
+  .warn  { background: var(--amber-light); border-left: 4px solid var(--amber); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin: 0.8rem 0; font-size: 14px; color: var(--amber); }
+  .danger{ background: var(--red-light);   border-left: 4px solid var(--red);   border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin: 0.8rem 0; font-size: 14px; color: var(--red); }
+  .good  { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin: 0.8rem 0; font-size: 14px; color: var(--green); }
+  .tip strong, .warn strong, .danger strong, .good strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; opacity: 0.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.6rem 0 1rem; }
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 0.875rem 1rem; }
+  .card h4 { font-family: 'Courier New', monospace; font-size: 13px; color: var(--blue-dark); margin-bottom: 0.4rem; }
+  .card p, .card li { font-size: 13px; line-height: 1.6; }
+  .card ul { padding-left: 1rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .frq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.8rem 0 1.25rem; }
+  .frq-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .frq-head { background: var(--text); color: white; padding: 8px 14px; display: flex; align-items: center; gap: 10px; }
+  .frq-num { font-family: 'Courier New', monospace; font-size: 11px; background: white; color: var(--text); padding: 2px 7px; border-radius: 3px; flex-shrink: 0; }
+  .frq-title { font-size: 13px; font-weight: bold; }
+  .frq-pts { margin-left: auto; font-family: 'Courier New', monospace; font-size: 12px; opacity: 0.7; }
+  .frq-body { padding: 10px 14px; font-size: 13px; line-height: 1.65; }
+  .frq-body ul { padding-left: 1rem; }
+  @media (max-width: 560px) { .frq-grid { grid-template-columns: 1fr; } }
+
+  .trap-list { list-style: none; padding: 0; }
+  .trap-list li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; margin-bottom: 0.9rem; font-size: 14px; line-height: 1.65; }
+  .trap-num { font-family: 'Courier New', monospace; font-size: 12px; background: var(--red); color: white; width: 24px; height: 24px; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+  .score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 13px; }
+  .score-label { width: 60px; font-family: 'Courier New', monospace; color: var(--text2); }
+  .score-bar { flex: 1; height: 20px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .score-fill { height: 100%; display: flex; align-items: center; padding-left: 8px; font-size: 11px; color: white; font-family: 'Courier New', monospace; }
+  .score-pct { width: 40px; text-align: right; color: var(--text2); }
+
+  .unit-bar { display: flex; height: 30px; border-radius: 6px; overflow: hidden; margin: 0.75rem 0 1.5rem; font-size: 12px; font-family: 'Courier New', monospace; }
+  .unit-seg { display: flex; align-items: center; justify-content: center; color: white; padding: 0 4px; text-align: center; }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  @media print {
+    pre { background: #f0f0f0 !important; color: #000 !important; }
+    .kw { color: #00008b !important; } .cm { color: #006400 !important; }
+    .str { color: #8b0000 !important; } .num { color: #8b4513 !important; }
+    .cls { color: #008080 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <h1>AP Computer Science A</h1>
+  <div class="subtitle">COMPLETE STUDY GUIDE &nbsp;·&nbsp; MAY 2026 EXAM &nbsp;·&nbsp; JAVA</div>
+  <div class="exam-pills">
+    <span class="pill hi">42 MCQ · 55% of score</span>
+    <span class="pill hi">4 FRQ · 45% of score</span>
+    <span class="pill">3 hours total · 90 min per section</span>
+    <span class="pill">Digital · Bluebook app</span>
+    <span class="pill">Java Quick Reference provided during FRQs</span>
+    <span class="pill">No calculator permitted</span>
+    <span class="pill">Exam date: May 8, 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 1: EXAM FORMAT ═══════════ -->
+<div class="section" id="s1">
+  <div class="section-title"><span class="section-num">01</span> Exam Format &amp; Scoring</div>
+
+  <div class="subsection">
+    <h3>How the exam is structured</h3>
+    <p>The AP CSA exam is delivered completely digitally through College Board's Bluebook app on a laptop or Chromebook. There is no paper. Both sections happen on the same day with a short break in between.</p>
+    <p><strong>Section I (Multiple Choice):</strong> 42 questions, answer choices A through D, 90 minutes. No reference sheet is provided — you must know Java syntax from memory. There is no penalty for wrong answers, so you should always guess if you are unsure.</p>
+    <p><strong>Section II (Free Response):</strong> 4 questions where you type Java code directly into the Bluebook code editor, 90 minutes. The Java Quick Reference is displayed on screen at all times during this section. You can navigate between the 4 questions in any order.</p>
+    <table>
+      <tr><th>Section</th><th>Format</th><th>Time</th><th>Weight</th></tr>
+      <tr><td>I — Multiple Choice</td><td>42 questions, A–D, no reference sheet</td><td>90 min (~2 min/question)</td><td>55%</td></tr>
+      <tr><td>II — Free Response</td><td>4 Java coding questions, reference sheet on screen</td><td>90 min (~22 min/question)</td><td>45%</td></tr>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <h3>How scoring works</h3>
+    <p>Your raw MCQ score (number correct out of 42) is scaled to 55 points. Your raw FRQ score (points across 4 questions, each worth 9 points, out of 36 total) is scaled to 45 points. These combine into a composite score out of 100, which is then converted to a 1–5 score.</p>
+    <p>The conversion table changes slightly year to year, but historical cutoffs are approximately: 5 = 75+, 4 = 60–74, 3 = 45–59, 2 = 30–44, 1 = below 30. The mean score in 2025 was 3.18.</p>
+    <div class="score-row"><span class="score-label">Score 5</span><div class="score-bar"><div class="score-fill" style="width:25.6%;background:#185FA5">25.6%</div></div><span class="score-pct">25.6%</span></div>
+    <div class="score-row"><span class="score-label">Score 4</span><div class="score-bar"><div class="score-fill" style="width:22%;background:#0F6E56">22%</div></div><span class="score-pct">22%</span></div>
+    <div class="score-row"><span class="score-label">Score 3</span><div class="score-bar"><div class="score-fill" style="width:19.6%;background:#854F0B">19.6%</div></div><span class="score-pct">19.6%</span></div>
+    <div class="score-row"><span class="score-label">Score 2</span><div class="score-bar"><div class="score-fill" style="width:10%;background:#888780">10%</div></div><span class="score-pct">10%</span></div>
+    <div class="score-row"><span class="score-label">Score 1</span><div class="score-bar"><div class="score-fill" style="width:22.8%;background:#A32D2D">22.8%</div></div><span class="score-pct">22.8%</span></div>
+    <p style="font-size:13px;color:#888;margin-top:6px">2025 pass rate (score 3+): 67.2%</p>
+  </div>
+
+  <div class="subsection">
+    <h3>Unit weights — what shows up most</h3>
+    <div class="unit-bar">
+      <div class="unit-seg" style="width:20%;background:#185FA5">U1 · 20%</div>
+      <div class="unit-seg" style="width:30%;background:#0F6E56">U2 · 30%</div>
+      <div class="unit-seg" style="width:14%;background:#854F0B">U3 · 14%</div>
+      <div class="unit-seg" style="width:36%;background:#A32D2D">U4 · 35%</div>
+    </div>
+    <p>Unit 4 (Data Collections: arrays, ArrayList, recursion, sorting) is the single heaviest unit at 30–40% of the exam. Unit 2 (loops and conditionals) is the next heaviest at 25–35%. Together they account for more than half your score. Prioritize these if your study time is limited.</p>
+    <table>
+      <tr><th>Unit</th><th>Topic</th><th>Weight</th><th>Key FRQs</th></tr>
+      <tr><td>1</td><td>Using Objects &amp; Methods</td><td>15–25%</td><td>Parts of FRQ 1 and 2</td></tr>
+      <tr><td>2</td><td>Selection &amp; Iteration</td><td>25–35%</td><td>FRQ 1 (loops/conditionals), MCQ tracing</td></tr>
+      <tr><td>3</td><td>Class Creation</td><td>10–18%</td><td>FRQ 2 (class design)</td></tr>
+      <tr><td>4</td><td>Data Collections</td><td>30–40%</td><td>FRQ 3 (ArrayList), FRQ 4 (2D array)</td></tr>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <h3>2025–26 curriculum changes — what is new and what was removed</h3>
+    <p>This year's exam is the first to use the completely revised 4-unit structure. Two major areas were removed and one major area was added:</p>
+    <div class="two-col">
+      <div class="card">
+        <h4>✓ ADDED — will be tested</h4>
+        <ul>
+          <li>File reading with <code>Scanner</code> and <code>File</code></li>
+          <li>Reading CSV-style data from text files</li>
+          <li><code>hasNextInt()</code>, <code>nextLine()</code>, <code>hasNext()</code></li>
+          <li><code>Integer.parseInt()</code>, <code>Double.parseDouble()</code></li>
+          <li>Dataset analysis with ArrayList</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>✗ REMOVED — will NOT appear</h4>
+        <ul>
+          <li>Inheritance (<code>extends</code> keyword)</li>
+          <li>Polymorphism</li>
+          <li><code>super</code> keyword</li>
+          <li>Interfaces</li>
+          <li>Writing recursive methods (tracing recursion still tested)</li>
+          <li>Arrays inside FRQ 3 (ArrayList only now)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn"><strong>Important</strong> If you have an older study guide or textbook, ignore any sections on inheritance, extends, super, or polymorphism. Those topics will not appear on the 2026 exam at all.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 2: JAVA QUICK REFERENCE ═══════════ -->
+<div class="section" id="s2">
+  <div class="section-title"><span class="section-num">02</span> Java Quick Reference Sheet (Official)</div>
+
+  <p>The Java Quick Reference is displayed on screen inside Bluebook throughout Section II (FRQs). It contains exactly the methods listed below — nothing more, nothing less. During Section I (MCQ) there is no reference sheet, so you need these memorized. Understanding what each method does and when to use it is not optional — it shows up in every single FRQ.</p>
+
+  <div class="subsection">
+    <h3>String class</h3>
+    <p>Strings in Java are objects, not primitives. They are <strong>immutable</strong> — once created, a String's characters can never change. Every String method that appears to "modify" the string actually creates and returns a brand new String. The original is untouched.</p>
+    <table>
+      <tr><th>Method</th><th>Returns</th><th>What it does</th><th>Example &amp; result</th></tr>
+      <tr><td><code>int length()</code></td><td>int</td><td>Number of characters in the string. Spaces count. Indices go from 0 to length-1.</td><td><code>"hello".length()</code> → 5</td></tr>
+      <tr><td><code>String substring(int from, int to)</code></td><td>String</td><td>Characters starting at index <em>from</em>, up to but NOT including index <em>to</em>. The length of the result is always <em>to − from</em>.</td><td><code>"hello".substring(1,4)</code> → "ell"</td></tr>
+      <tr><td><code>String substring(int from)</code></td><td>String</td><td>Characters from index <em>from</em> all the way to the end of the string.</td><td><code>"hello".substring(2)</code> → "llo"</td></tr>
+      <tr><td><code>int indexOf(String str)</code></td><td>int</td><td>Index of the first occurrence of str inside this string. Returns -1 if str is not found. Searching is case-sensitive.</td><td><code>"hello".indexOf("ll")</code> → 2</td></tr>
+      <tr><td><code>boolean equals(Object other)</code></td><td>boolean</td><td>True if this string and other have exactly the same characters in the same order. Case-sensitive. This is the correct way to compare string values.</td><td><code>"hi".equals("hi")</code> → true</td></tr>
+      <tr><td><code>int compareTo(String other)</code></td><td>int</td><td>Negative if this comes before other alphabetically, 0 if equal, positive if this comes after. Uses Unicode/ASCII values — uppercase letters come before lowercase.</td><td><code>"apple".compareTo("banana")</code> → negative number</td></tr>
+    </table>
+    <div class="danger"><strong>substring to-index is exclusive</strong> This is the most frequently tested String trap. <code>"hello".substring(0, 3)</code> gives <code>"hel"</code>, NOT <code>"hell"</code>. The character at index 3 is NOT included. Think of it as: start at <em>from</em>, stop before <em>to</em>.</div>
+    <div class="danger"><strong>Never use == to compare Strings</strong> <code>==</code> checks whether two variables point to the same object in memory, not whether they contain the same text. Two different String objects that spell "hello" will return false with <code>==</code>. Always use <code>.equals()</code>.</div>
+    <div class="warn"><strong>charAt() is NOT on the 2026 reference sheet</strong> Use <code>s.substring(i, i+1)</code> to get the character at index i as a one-character String. This is the officially expected approach on the 2026 exam.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Math class — all methods are static</h3>
+    <p>Static means you call these on the class name itself, not on an object. You never write <code>new Math()</code>. Just write <code>Math.sqrt(25)</code> directly. All Math methods are available in both sections of the exam, but you must know the syntax from memory for MCQ.</p>
+    <table>
+      <tr><th>Method</th><th>Returns</th><th>What it does</th><th>Example</th></tr>
+      <tr><td><code>Math.abs(int x)</code></td><td>int</td><td>Absolute value — removes the negative sign if present</td><td><code>Math.abs(-7)</code> → 7</td></tr>
+      <tr><td><code>Math.abs(double x)</code></td><td>double</td><td>Same but for doubles</td><td><code>Math.abs(-3.5)</code> → 3.5</td></tr>
+      <tr><td><code>Math.pow(double base, double exp)</code></td><td>double</td><td>Raises base to the power exp. Always returns a double, even for whole-number results.</td><td><code>Math.pow(2, 10)</code> → 1024.0</td></tr>
+      <tr><td><code>Math.sqrt(double x)</code></td><td>double</td><td>Square root of x. Always returns a double.</td><td><code>Math.sqrt(9)</code> → 3.0</td></tr>
+      <tr><td><code>Math.random()</code></td><td>double</td><td>A random double in [0.0, 1.0). Zero is possible; 1.0 is never returned. See Section 7 for the full formula guide.</td><td><code>Math.random()</code> → e.g. 0.7341</td></tr>
+      <tr><td><code>Math.max(int a, int b)</code></td><td>int</td><td>Returns whichever argument is larger</td><td><code>Math.max(3, 8)</code> → 8</td></tr>
+      <tr><td><code>Math.min(int a, int b)</code></td><td>int</td><td>Returns whichever argument is smaller</td><td><code>Math.min(3, 8)</code> → 3</td></tr>
+    </table>
+    <div class="warn"><strong>Math.pow and Math.sqrt always return double</strong> Even <code>Math.pow(2, 3)</code> returns <code>8.0</code>, not <code>8</code>. If you need an int result, cast it: <code>(int) Math.pow(2, 3)</code>. Forgetting this causes type mismatch errors on FRQs.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Integer and Double wrapper classes</h3>
+    <p>Wrapper classes allow primitive values to be used as objects. ArrayList cannot store primitives directly — it needs <code>Integer</code> (not <code>int</code>) and <code>Double</code> (not <code>double</code>). Java automatically converts between them (this is called autoboxing/unboxing), so you rarely have to do it manually.</p>
+    <table>
+      <tr><th>Constant or Method</th><th>Returns</th><th>What it does and when to use it</th></tr>
+      <tr><td><code>Integer.MIN_VALUE</code></td><td>int</td><td>The smallest possible int: −2,147,483,648. Use this to initialize a "maximum-finding" variable so any real value in the array will be larger than it.</td></tr>
+      <tr><td><code>Integer.MAX_VALUE</code></td><td>int</td><td>The largest possible int: 2,147,483,647. Use this to initialize a "minimum-finding" variable so any real value in the array will be smaller than it.</td></tr>
+      <tr><td><code>Integer.parseInt(String s)</code></td><td>int</td><td>Converts a String like "42" to the integer 42. Useful when reading data from a file as text and needing numbers.</td></tr>
+      <tr><td><code>Double.parseDouble(String s)</code></td><td>double</td><td>Converts a String like "3.14" to the double 3.14. Same use case as parseInt.</td></tr>
+      <tr><td><code>Double.MIN_VALUE</code></td><td>double</td><td>The smallest POSITIVE nonzero double (approximately 5×10⁻³²⁴). NOT the most negative double. This is a common exam trap — see Section 9.</td></tr>
+      <tr><td><code>Double.MAX_VALUE</code></td><td>double</td><td>The largest possible double. Use to initialize a "minimum-finding" variable for doubles.</td></tr>
+    </table>
+<pre><span class="cm">// Autoboxing: Java automatically converts int → Integer when adding to ArrayList</span>
+<span class="cls">ArrayList</span>&lt;<span class="cls">Integer</span>&gt; nums = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+nums.add(<span class="num">42</span>);   <span class="cm">// 42 is automatically boxed into new Integer(42)</span>
+
+<span class="cm">// Unboxing: Java automatically converts Integer → int when reading from ArrayList</span>
+<span class="kw">int</span> x = nums.get(<span class="num">0</span>);   <span class="cm">// Integer automatically unboxed to int</span>
+
+<span class="cm">// Finding max using Integer.MIN_VALUE as initial value</span>
+<span class="kw">int</span> max = <span class="cls">Integer</span>.MIN_VALUE;
+<span class="kw">for</span> (<span class="kw">int</span> val : nums) {
+    <span class="kw">if</span> (val &gt; max) max = val;
+}
+<span class="cm">// This works correctly even if all values in nums are negative</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>ArrayList class</h3>
+    <p>ArrayList is a resizable list — unlike arrays whose size is fixed at creation, an ArrayList can grow and shrink. It must be imported and it can only hold objects (use <code>Integer</code> instead of <code>int</code>, <code>Double</code> instead of <code>double</code>). All indexing is 0-based, just like arrays.</p>
+    <table>
+      <tr><th>Constructor / Method</th><th>Returns</th><th>What it does in detail</th></tr>
+      <tr><td><code>ArrayList&lt;E&gt;()</code></td><td>—</td><td>Creates an empty ArrayList. The type parameter E says what kind of objects go in it. Example: <code>ArrayList&lt;String&gt;</code> holds Strings.</td></tr>
+      <tr><td><code>int size()</code></td><td>int</td><td>The current number of elements. This changes as you add and remove. The last valid index is always <code>size() - 1</code>.</td></tr>
+      <tr><td><code>boolean add(E obj)</code></td><td>boolean</td><td>Appends obj to the very end of the list, increasing size by 1. Always returns true (the return value is rarely used).</td></tr>
+      <tr><td><code>void add(int index, E obj)</code></td><td>void</td><td>Inserts obj at position index. Every element at index and beyond shifts one position to the right. The list size increases by 1.</td></tr>
+      <tr><td><code>E get(int index)</code></td><td>E</td><td>Returns the element at index without removing it or changing the list in any way. Throws IndexOutOfBoundsException if index is out of range.</td></tr>
+      <tr><td><code>E set(int index, E obj)</code></td><td>E</td><td>Replaces the element at index with obj and returns the element that was there before. The size does not change.</td></tr>
+      <tr><td><code>E remove(int index)</code></td><td>E</td><td>Removes and returns the element at index. Every element after it shifts one position to the LEFT, and size decreases by 1. This shifting is what causes bugs in forward-traversal loops.</td></tr>
+      <tr><td><code>boolean contains(Object obj)</code></td><td>boolean</td><td>Returns true if any element in the list equals obj (uses .equals() internally, not ==). Useful for checking membership before adding.</td></tr>
+    </table>
+    <div class="danger"><strong>ArrayList requires wrapper types</strong> Writing <code>ArrayList&lt;int&gt;</code> is a compile error. You must write <code>ArrayList&lt;Integer&gt;</code>. The same applies to double→Double, boolean→Boolean, char→Character. Java's autoboxing handles the conversion transparently once declared correctly.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Scanner class — new for the 2026 exam</h3>
+    <p>Scanner was added to the curriculum this year. The same Scanner class works for reading from keyboard input OR from files — the only difference is what you pass to the constructor. On the exam, the focus is file reading. You need to know how to open a file, check whether more data exists, and read the next value.</p>
+    <table>
+      <tr><th>Constructor / Method</th><th>Returns</th><th>What it does</th></tr>
+      <tr><td><code>Scanner(File source)</code></td><td>—</td><td>Creates a Scanner that reads from a file. Pass <code>new File("filename.txt")</code> as the argument.</td></tr>
+      <tr><td><code>boolean hasNext()</code></td><td>boolean</td><td>True if there is at least one more token (any whitespace-separated chunk of text) remaining in the source.</td></tr>
+      <tr><td><code>boolean hasNextInt()</code></td><td>boolean</td><td>True if the next token is a valid integer. Use this as the while-loop condition when reading a file of integers.</td></tr>
+      <tr><td><code>boolean hasNextDouble()</code></td><td>boolean</td><td>True if the next token is a valid double.</td></tr>
+      <tr><td><code>String next()</code></td><td>String</td><td>Reads and returns the next whitespace-delimited token as a String.</td></tr>
+      <tr><td><code>int nextInt()</code></td><td>int</td><td>Reads and returns the next token as an int.</td></tr>
+      <tr><td><code>double nextDouble()</code></td><td>double</td><td>Reads and returns the next token as a double.</td></tr>
+      <tr><td><code>String nextLine()</code></td><td>String</td><td>Reads and returns everything on the current line up to (but not including) the newline character. Advances past the newline.</td></tr>
+      <tr><td><code>boolean nextBoolean()</code></td><td>boolean</td><td>Reads and returns the next token as a boolean.</td></tr>
+    </table>
+    <div class="warn"><strong>nextInt() + nextLine() trap</strong> After <code>nextInt()</code> reads a number, the newline character at the end of that line is still sitting in the buffer. If you then call <code>nextLine()</code>, it reads that leftover newline and returns an empty string instead of the next actual line. Fix: call <code>sc.nextLine()</code> once after <code>nextInt()</code> to consume the leftover newline before reading the next line of real data.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 3: UNIT 1 ═══════════ -->
+<div class="section" id="s3">
+  <div class="section-title"><span class="section-num">03</span> Unit 1 — Using Objects &amp; Methods <span style="font-size:13px;font-weight:normal;color:var(--text2)">&nbsp;15–25% of exam</span></div>
+
+  <div class="subsection">
+    <h3>Primitive types — the building blocks of Java data</h3>
+    <p>A primitive type stores a value directly in memory. It is not an object. There are three primitives tested on AP CSA:</p>
+    <table>
+      <tr><th>Type</th><th>What it stores</th><th>Default value</th><th>Examples</th></tr>
+      <tr><td><code>int</code></td><td>Whole numbers from −2,147,483,648 to 2,147,483,647</td><td>0</td><td>-100, 0, 42, 1000000</td></tr>
+      <tr><td><code>double</code></td><td>Decimal numbers (64-bit floating point)</td><td>0.0</td><td>3.14, -0.5, 1.0E10</td></tr>
+      <tr><td><code>boolean</code></td><td>Either true or false — no other values possible</td><td>false</td><td>true, false</td></tr>
+    </table>
+    <p>When you declare a variable, you give it a type and a name. The type tells Java how much memory to reserve and what operations are allowed. Variable names are case-sensitive: <code>myScore</code> and <code>myscore</code> are two different variables.</p>
+<pre><span class="kw">int</span> age = <span class="num">17</span>;
+<span class="kw">double</span> gpa = <span class="num">3.85</span>;
+<span class="kw">boolean</span> passed = <span class="kw">true</span>;
+
+<span class="cm">// You can declare without initializing, but you must initialize before using</span>
+<span class="kw">int</span> score;
+score = <span class="num">95</span>;   <span class="cm">// now ok to use</span>
+
+<span class="cm">// Multiple declarations on one line (same type only)</span>
+<span class="kw">int</span> x = <span class="num">1</span>, y = <span class="num">2</span>, z = <span class="num">3</span>;</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Arithmetic operators and the integer division rule</h3>
+    <p>Java uses the standard arithmetic operators: <code>+</code> (add), <code>-</code> (subtract), <code>*</code> (multiply), <code>/</code> (divide), <code>%</code> (remainder/modulo). The order of operations follows standard math: multiplication, division, and modulo are evaluated left-to-right before addition and subtraction. Use parentheses to force a different order.</p>
+    <p>The most important rule to memorize: <strong>when both operands of a division are integers, Java performs integer division — it truncates the decimal portion toward zero.</strong> This is not rounding. 7/2 = 3, not 3.5, not 4. The decimal is simply cut off.</p>
+<pre><span class="kw">int</span> a = <span class="num">7</span> / <span class="num">2</span>;      <span class="cm">// → 3    (NOT 3.5 — truncated)</span>
+<span class="kw">int</span> b = -<span class="num">7</span> / <span class="num">2</span>;     <span class="cm">// → -3   (truncates toward 0, not toward -4)</span>
+<span class="kw">int</span> c = <span class="num">1</span> / <span class="num">3</span>;      <span class="cm">// → 0    (the whole result is less than 1)</span>
+<span class="kw">int</span> d = <span class="num">10</span> % <span class="num">3</span>;     <span class="cm">// → 1    (10 = 3×3 + 1, so remainder is 1)</span>
+<span class="kw">int</span> e = <span class="num">15</span> % <span class="num">5</span>;     <span class="cm">// → 0    (15 divides evenly by 5)</span>
+
+<span class="cm">// To get decimal division, at least one operand must be a double:</span>
+<span class="kw">double</span> f = <span class="num">7.0</span> / <span class="num">2</span>;          <span class="cm">// → 3.5   (7.0 is a double literal)</span>
+<span class="kw">double</span> g = (<span class="kw">double</span>) <span class="num">7</span> / <span class="num">2</span>;   <span class="cm">// → 3.5   (cast 7 to double first)</span>
+<span class="kw">double</span> h = <span class="num">7</span> / <span class="num">2</span>;             <span class="cm">// → 3.0   (WRONG! int division first → 3, then stored as 3.0)</span></pre>
+    <div class="tip"><strong>Modulo uses you must know</strong> <code>n % 2 == 0</code> tests if n is even. <code>n % 2 != 0</code> (or <code>== 1</code>) tests if n is odd. <code>n % 10</code> extracts the last digit of n. <code>n % 100</code> extracts the last two digits. These appear constantly on both MCQ and FRQ.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Compound assignment and increment operators</h3>
+<pre><span class="cm">// Compound assignment: shorthand for operating on a variable and storing result back</span>
+x += <span class="num">5</span>;    <span class="cm">// same as: x = x + 5</span>
+x -= <span class="num">3</span>;    <span class="cm">// same as: x = x - 3</span>
+x *= <span class="num">2</span>;    <span class="cm">// same as: x = x * 2</span>
+x /= <span class="num">4</span>;    <span class="cm">// same as: x = x / 4 (still integer division if x is int)</span>
+x %= <span class="num">7</span>;    <span class="cm">// same as: x = x % 7</span>
+
+<span class="cm">// Increment/decrement — adds or subtracts 1</span>
+x++;   <span class="cm">// post-increment: use x's current value in the expression, then add 1</span>
+++x;   <span class="cm">// pre-increment: add 1 first, then use the new value</span>
+x--;   <span class="cm">// post-decrement</span>
+
+<span class="cm">// The difference between pre and post matters when used in an expression:</span>
+<span class="kw">int</span> a = <span class="num">5</span>;
+<span class="kw">int</span> b = a++;   <span class="cm">// b = 5, then a becomes 6</span>
+<span class="kw">int</span> c = ++a;   <span class="cm">// a becomes 7 first, then c = 7</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Casting — converting between types</h3>
+    <p>Casting forces a value to be treated as a different type. You put the target type in parentheses before the value. The two most important casts for the exam are <code>(int)</code> and <code>(double)</code>.</p>
+    <p><strong>Widening</strong> (int → double) is automatic and safe — no data is lost. <strong>Narrowing</strong> (double → int) requires an explicit cast and truncates the decimal portion.</p>
+<pre><span class="cm">// Widening: automatic, no cast needed</span>
+<span class="kw">double</span> d = <span class="num">5</span>;         <span class="cm">// int 5 is automatically widened to 5.0</span>
+
+<span class="cm">// Narrowing: requires explicit cast, truncates (does NOT round)</span>
+<span class="kw">int</span> i = (<span class="kw">int</span>) <span class="num">3.9</span>;    <span class="cm">// → 3  (NOT 4 — just chops off decimal)</span>
+<span class="kw">int</span> j = (<span class="kw">int</span>) <span class="num">3.1</span>;    <span class="cm">// → 3  (same result for 3.9 and 3.1 — not rounding)</span>
+<span class="kw">int</span> k = (<span class="kw">int</span>) -<span class="num">3.9</span>;   <span class="cm">// → -3 (truncates toward zero, not toward -4)</span>
+
+<span class="cm">// Use casting to force decimal division</span>
+<span class="kw">int</span> total = <span class="num">7</span>, count = <span class="num">2</span>;
+<span class="kw">double</span> avg = (<span class="kw">double</span>) total / count;   <span class="cm">// → 3.5 ✓</span>
+<span class="kw">double</span> bad = (<span class="kw">double</span>) (total / count); <span class="cm">// → 3.0 ✗ (division happens before cast)</span>
+
+<span class="cm">// Cast operator has high precedence — it applies to the immediately following value</span>
+<span class="cm">// (double) total / count   means: cast total, then divide → 7.0/2 → 3.5</span>
+<span class="cm">// (double)(total / count)  means: divide first → 3, then cast → 3.0</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Creating and using objects</h3>
+    <p>An object is an instance of a class. Classes are blueprints; objects are the actual things built from those blueprints. You create an object using the <code>new</code> keyword followed by the class's constructor. The <code>new</code> keyword allocates memory on the heap and initializes the object.</p>
+    <p>Object variables store a <em>reference</em> (memory address) to the object, not the object itself. This means two variables can refer to the same object, and passing an object to a method lets that method modify the object's fields.</p>
+<pre><span class="cm">// Creating objects with new</span>
+<span class="cls">String</span> name = <span class="kw">new</span> <span class="cls">String</span>(<span class="str">"Alice"</span>);   <span class="cm">// or just: String name = "Alice";</span>
+
+<span class="cm">// Calling instance methods — the object is to the left of the dot</span>
+<span class="kw">int</span> len = name.length();                  <span class="cm">// → 5</span>
+<span class="cls">String</span> part = name.substring(<span class="num">0</span>, <span class="num">3</span>);      <span class="cm">// → "Ali"</span>
+<span class="kw">boolean</span> same = name.equals(<span class="str">"Alice"</span>);     <span class="cm">// → true</span>
+
+<span class="cm">// Calling static (class) methods — use class name, no object needed</span>
+<span class="kw">double</span> sq = Math.sqrt(<span class="num">25</span>);      <span class="cm">// → 5.0</span>
+<span class="kw">int</span> big = Math.max(<span class="num">10</span>, <span class="num">20</span>);    <span class="cm">// → 20</span>
+
+<span class="cm">// null — a reference that points to no object</span>
+<span class="cls">String</span> s = <span class="kw">null</span>;          <span class="cm">// s exists as a variable but points to nothing</span>
+s.length();               <span class="cm">// CRASH: NullPointerException — can't call methods on null</span>
+<span class="kw">if</span> (s != <span class="kw">null</span>) s.length();  <span class="cm">// safe — check first</span>
+
+<span class="cm">// Chaining method calls</span>
+<span class="kw">int</span> result = <span class="str">"Hello World"</span>.substring(<span class="num">6</span>).length();  <span class="cm">// "World".length() → 5</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Method signatures, parameters, and return values</h3>
+    <p>A method is a named block of code that can be called to perform a task. Every method has a <em>signature</em> that specifies its visibility (<code>public</code>/<code>private</code>), whether it belongs to the class or an object (<code>static</code> or not), its return type, its name, and its parameter list.</p>
+    <p>Parameters are the inputs a method receives. When you call a method with a primitive argument, the method gets a copy — changing the parameter inside the method does NOT affect the original variable. When you call a method with an object argument, the method gets a copy of the reference, so it CAN modify the object's fields, but cannot make the caller's variable point to a different object.</p>
+<pre><span class="cm">// Method anatomy</span>
+<span class="cm">//  access   static?  return  name      parameters</span>
+<span class="kw">public static int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;         <span class="cm">// return exits the method and sends back the value</span>
+}
+
+<span class="cm">// void methods return nothing</span>
+<span class="kw">public static void</span> printLine(<span class="cls">String</span> text) {
+    System.out.println(text);
+    <span class="cm">// no return statement needed (or you can write: return;)</span>
+}
+
+<span class="cm">// Calling methods</span>
+<span class="kw">int</span> sum = add(<span class="num">3</span>, <span class="num">5</span>);    <span class="cm">// → 8</span>
+printLine(<span class="str">"hello"</span>);     <span class="cm">// prints "hello"</span>
+
+<span class="cm">// Primitive pass-by-value — x is unchanged after this call</span>
+<span class="kw">static void</span> doubleIt(<span class="kw">int</span> n) { n *= <span class="num">2</span>; }
+<span class="kw">int</span> x = <span class="num">5</span>;
+doubleIt(x);
+System.out.println(x);   <span class="cm">// → 5, NOT 10 — x was not changed</span></pre>
+    <div class="tip"><strong>Every non-void method needs a return statement</strong> on every possible code path. If your method has an if/else and only one branch has a return, the compiler will complain. This is a very common FRQ mistake that costs points.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 4: UNIT 2 ═══════════ -->
+<div class="section" id="s4">
+  <div class="section-title"><span class="section-num">04</span> Unit 2 — Selection &amp; Iteration <span style="font-size:13px;font-weight:normal;color:var(--text2)">&nbsp;25–35% of exam · highest MCQ weight</span></div>
+
+  <div class="subsection">
+    <h3>Boolean expressions — the foundation of all control flow</h3>
+    <p>A boolean expression is anything that evaluates to either <code>true</code> or <code>false</code>. Conditional statements and loops all depend on boolean expressions to decide what to do. You need to be able to evaluate complex boolean expressions quickly on the MCQ section.</p>
+    <table>
+      <tr><th>Operator</th><th>Name</th><th>True when...</th><th>Example</th></tr>
+      <tr><td><code>==</code></td><td>Equal to</td><td>Both sides have the same value</td><td><code>x == 5</code></td></tr>
+      <tr><td><code>!=</code></td><td>Not equal to</td><td>The two sides have different values</td><td><code>x != 0</code></td></tr>
+      <tr><td><code>&lt;</code></td><td>Less than</td><td>Left is strictly less than right</td><td><code>age &lt; 18</code></td></tr>
+      <tr><td><code>&gt;</code></td><td>Greater than</td><td>Left is strictly greater than right</td><td><code>score &gt; 90</code></td></tr>
+      <tr><td><code>&lt;=</code></td><td>Less than or equal</td><td>Left is less than or equal to right</td><td><code>count &lt;= 10</code></td></tr>
+      <tr><td><code>&gt;=</code></td><td>Greater than or equal</td><td>Left is greater than or equal to right</td><td><code>temp &gt;= 100</code></td></tr>
+      <tr><td><code>&amp;&amp;</code></td><td>AND (logical)</td><td>BOTH sides are true</td><td><code>x &gt; 0 &amp;&amp; x &lt; 100</code></td></tr>
+      <tr><td><code>||</code></td><td>OR (logical)</td><td>AT LEAST ONE side is true</td><td><code>x &lt; 0 || x &gt; 100</code></td></tr>
+      <tr><td><code>!</code></td><td>NOT (logical)</td><td>The operand is false (flips it)</td><td><code>!done</code></td></tr>
+    </table>
+    <p><strong>Short-circuit evaluation:</strong> <code>&amp;&amp;</code> stops the moment it finds a false — if the left side is false, the right side is never evaluated. <code>||</code> stops the moment it finds a true. This is actually useful: <code>if (list != null &amp;&amp; list.size() &gt; 0)</code> is safe because if <code>list</code> is null, the <code>size()</code> call never happens.</p>
+    <p><strong>De Morgan's Laws — appears on MCQ frequently:</strong></p>
+<pre><span class="cm">// NOT (A AND B)  is the same as  (NOT A) OR (NOT B)</span>
+!(a &amp;&amp; b)  ==  (!a || !b)
+
+<span class="cm">// NOT (A OR B)  is the same as  (NOT A) AND (NOT B)</span>
+!(a || b)  ==  (!a &amp;&amp; !b)
+
+<span class="cm">// Practical example: "not (x > 0 and x < 100)" is the same as "x <= 0 or x >= 100"</span>
+!(x &gt; <span class="num">0</span> &amp;&amp; x &lt; <span class="num">100</span>)  ==  (x &lt;= <span class="num">0</span> || x &gt;= <span class="num">100</span>)</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>If / else if / else — making decisions in code</h3>
+    <p>An if statement executes a block of code only when its condition is true. Else-if and else add additional branches. In an if/else-if/else chain, Java evaluates conditions top to bottom and executes only the <em>first</em> matching branch — the rest are skipped entirely even if they would also be true.</p>
+<pre><span class="cm">// Simple if — runs block only if condition is true</span>
+<span class="kw">if</span> (score &gt;= <span class="num">60</span>) {
+    System.out.println(<span class="str">"Passing"</span>);
+}
+
+<span class="cm">// If-else — one branch always runs</span>
+<span class="kw">if</span> (x % <span class="num">2</span> == <span class="num">0</span>) {
+    System.out.println(<span class="str">"Even"</span>);
+} <span class="kw">else</span> {
+    System.out.println(<span class="str">"Odd"</span>);
+}
+
+<span class="cm">// If-else-if chain — ONLY the first true branch runs</span>
+<span class="cls">String</span> grade;
+<span class="kw">if</span>      (score &gt;= <span class="num">90</span>) grade = <span class="str">"A"</span>;
+<span class="kw">else if</span> (score &gt;= <span class="num">80</span>) grade = <span class="str">"B"</span>;
+<span class="kw">else if</span> (score &gt;= <span class="num">70</span>) grade = <span class="str">"C"</span>;
+<span class="kw">else if</span> (score &gt;= <span class="num">60</span>) grade = <span class="str">"D"</span>;
+<span class="kw">else</span>                   grade = <span class="str">"F"</span>;
+<span class="cm">// If score = 85: first checks >=90 (no), then checks >=80 (yes!) → grade = "B"</span>
+<span class="cm">// The >=70 and >=60 checks are NEVER reached for score=85</span>
+
+<span class="cm">// Nested if — an if inside another if</span>
+<span class="kw">if</span> (age &gt;= <span class="num">18</span>) {
+    <span class="kw">if</span> (hasID) {
+        System.out.println(<span class="str">"Welcome"</span>);
+    } <span class="kw">else</span> {
+        System.out.println(<span class="str">"Need ID"</span>);
+    }
+}</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>While loop — repeat while a condition is true</h3>
+    <p>A while loop checks its condition first. If true, runs the body, then checks again. It keeps looping until the condition is false. If the condition is false the very first time, the body never runs. The most common use: when you don't know how many iterations will be needed ahead of time, like reading until end of file.</p>
+<pre><span class="cm">// Basic while loop — must update the variable inside or it loops forever</span>
+<span class="kw">int</span> i = <span class="num">0</span>;
+<span class="kw">while</span> (i &lt; <span class="num">5</span>) {
+    System.out.println(i);   <span class="cm">// prints 0, 1, 2, 3, 4</span>
+    i++;                     <span class="cm">// without this line: infinite loop!</span>
+}
+
+<span class="cm">// Process a number digit by digit</span>
+<span class="kw">int</span> n = <span class="num">12345</span>;
+<span class="kw">while</span> (n &gt; <span class="num">0</span>) {
+    System.out.println(n % <span class="num">10</span>);   <span class="cm">// print last digit: 5, 4, 3, 2, 1</span>
+    n /= <span class="num">10</span>;                      <span class="cm">// remove last digit</span>
+}
+
+<span class="cm">// Reading a file until no more integers remain (most common Scanner pattern)</span>
+<span class="kw">while</span> (sc.hasNextInt()) {
+    <span class="kw">int</span> val = sc.nextInt();
+    <span class="cm">// process val</span>
+}
+
+<span class="cm">// Keep asking user until valid input (not tested often, but possible)</span>
+<span class="kw">while</span> (input &lt; <span class="num">1</span> || input &gt; <span class="num">10</span>) {
+    input = sc.nextInt();
+}</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>For loop — repeat a known number of times</h3>
+    <p>A for loop is the standard choice when you know exactly how many times you want to loop, or when you need an index variable to track position. It packages initialization, condition, and update into one compact line, making it easier to read than an equivalent while loop.</p>
+    <p>The three parts: <code>for (initialization; condition; update)</code>. Initialization runs once before the loop starts. Condition is checked before every iteration (including the first). Update runs after every iteration, right before the condition is re-checked.</p>
+<pre><span class="cm">// Count up from 0 to 9</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) {
+    System.out.print(i + <span class="str">" "</span>);   <span class="cm">// 0 1 2 3 4 5 6 7 8 9</span>
+}
+
+<span class="cm">// Count down from 10 to 1</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">10</span>; i &gt;= <span class="num">1</span>; i--) {
+    System.out.print(i + <span class="str">" "</span>);   <span class="cm">// 10 9 8 7 6 5 4 3 2 1</span>
+}
+
+<span class="cm">// Count by 3s</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt;= <span class="num">12</span>; i += <span class="num">3</span>) {
+    System.out.print(i + <span class="str">" "</span>);   <span class="cm">// 0 3 6 9 12</span>
+}
+
+<span class="cm">// Loop over all indices of an array</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; arr.length; i++) {
+    System.out.println(arr[i]);
+}
+
+<span class="cm">// Enhanced for loop (for-each) — simpler when you don't need the index</span>
+<span class="kw">for</span> (<span class="kw">int</span> n : arr) {           <span class="cm">// n takes the value of each element in turn</span>
+    System.out.println(n);    <span class="cm">// read-only: assigning to n does nothing to arr</span>
+}
+
+<span class="cm">// Nested loops — total iterations = outer count × inner count</span>
+<span class="kw">for</span> (<span class="kw">int</span> row = <span class="num">1</span>; row &lt;= <span class="num">3</span>; row++) {
+    <span class="kw">for</span> (<span class="kw">int</span> col = <span class="num">1</span>; col &lt;= row; col++) {
+        System.out.print(col + <span class="str">" "</span>);
+    }
+    System.out.println();
+}
+<span class="cm">// Output:</span>
+<span class="cm">// 1</span>
+<span class="cm">// 1 2</span>
+<span class="cm">// 1 2 3</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Essential iteration algorithms — must know for FRQ and MCQ</h3>
+    <p>These patterns come up in almost every exam. Practice until you can write each one from memory in under 30 seconds.</p>
+<pre><span class="cm">// ── Sum of all elements ──────────────────────────────────────────────</span>
+<span class="kw">int</span> sum = <span class="num">0</span>;                          <span class="cm">// accumulator starts at 0</span>
+<span class="kw">for</span> (<span class="kw">int</span> n : arr) sum += n;
+<span class="cm">// average: (double) sum / arr.length</span>
+
+<span class="cm">// ── Find the maximum ─────────────────────────────────────────────────</span>
+<span class="kw">int</span> max = arr[<span class="num">0</span>];                      <span class="cm">// start with first element, NOT 0</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt; arr.length; i++)  <span class="cm">// start loop at 1 since index 0 is handled</span>
+    <span class="kw">if</span> (arr[i] &gt; max) max = arr[i];
+
+<span class="cm">// ── Find the index of the maximum ───────────────────────────────────</span>
+<span class="kw">int</span> maxIdx = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt; arr.length; i++)
+    <span class="kw">if</span> (arr[i] &gt; arr[maxIdx]) maxIdx = i;
+
+<span class="cm">// ── Count elements matching a condition ──────────────────────────────</span>
+<span class="kw">int</span> count = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> n : arr)
+    <span class="kw">if</span> (n % <span class="num">2</span> == <span class="num">0</span>) count++;   <span class="cm">// count even numbers</span>
+
+<span class="cm">// ── Check if ALL elements satisfy a condition ───────────────────────</span>
+<span class="kw">boolean</span> allPositive = <span class="kw">true</span>;
+<span class="kw">for</span> (<span class="kw">int</span> n : arr) {
+    <span class="kw">if</span> (n &lt;= <span class="num">0</span>) { allPositive = <span class="kw">false</span>; <span class="kw">break</span>; }
+}
+
+<span class="cm">// ── Check if ANY element satisfies a condition ──────────────────────</span>
+<span class="kw">boolean</span> hasNeg = <span class="kw">false</span>;
+<span class="kw">for</span> (<span class="kw">int</span> n : arr) {
+    <span class="kw">if</span> (n &lt; <span class="num">0</span>) { hasNeg = <span class="kw">true</span>; <span class="kw">break</span>; }
+}
+
+<span class="cm">// ── Build a filtered ArrayList (keep only elements that match) ───────</span>
+<span class="cls">ArrayList</span>&lt;<span class="cls">Integer</span>&gt; evens = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+<span class="kw">for</span> (<span class="kw">int</span> n : list)
+    <span class="kw">if</span> (n % <span class="num">2</span> == <span class="num">0</span>) evens.add(n);
+
+<span class="cm">// ── Reverse a String ────────────────────────────────────────────────</span>
+<span class="cls">String</span> rev = <span class="str">""</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = s.length() - <span class="num">1</span>; i &gt;= <span class="num">0</span>; i--)
+    rev += s.substring(i, i + <span class="num">1</span>);   <span class="cm">// charAt equivalent using substring</span>
+
+<span class="cm">// ── Count occurrences of a character in a String ────────────────────</span>
+<span class="kw">int</span> vowels = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; s.length(); i++) {
+    <span class="cls">String</span> ch = s.substring(i, i + <span class="num">1</span>);
+    <span class="kw">if</span> (ch.equals(<span class="str">"a"</span>) || ch.equals(<span class="str">"e"</span>) || ch.equals(<span class="str">"i"</span>)
+        || ch.equals(<span class="str">"o"</span>) || ch.equals(<span class="str">"u"</span>)) vowels++;
+}</pre>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 5: UNIT 3 ═══════════ -->
+<div class="section" id="s5">
+  <div class="section-title"><span class="section-num">05</span> Unit 3 — Class Creation <span style="font-size:13px;font-weight:normal;color:var(--text2)">&nbsp;10–18% of exam · FRQ 2 is always a full class</span></div>
+
+  <div class="subsection">
+    <h3>What a class is and why it matters</h3>
+    <p>A class is a programmer-defined type. It bundles together data (instance variables / fields) and the behaviors that operate on that data (methods). Every object you create is an instance of a class. The class defines what all instances will look like and what they can do; each individual object has its own copy of the data.</p>
+    <p>For example, a <code>Student</code> class might define that every Student has a name and a GPA. Each Student object you create will have its own name and GPA values, but they all share the same methods like <code>getGPA()</code> or <code>setGPA()</code>.</p>
+  </div>
+
+  <div class="subsection">
+    <h3>Anatomy of a complete class — the FRQ 2 template</h3>
+<pre><span class="kw">public class</span> <span class="cls">Student</span> {
+
+    <span class="cm">// ── INSTANCE VARIABLES (fields) ───────────────────────────────────</span>
+    <span class="cm">// Always private — no other class should access them directly</span>
+    <span class="cm">// Each object gets its OWN copy of these variables</span>
+    <span class="kw">private</span> <span class="cls">String</span> name;
+    <span class="kw">private double</span> gpa;
+    <span class="kw">private int</span> gradeLevel;
+
+    <span class="cm">// ── CONSTRUCTOR ────────────────────────────────────────────────────</span>
+    <span class="cm">// Same name as the class, NO return type (not even void)</span>
+    <span class="cm">// Called automatically when you write: new Student("Alice", 3.9, 11)</span>
+    <span class="kw">public</span> <span class="cls">Student</span>(<span class="cls">String</span> name, <span class="kw">double</span> gpa, <span class="kw">int</span> gradeLevel) {
+        <span class="kw">this</span>.name = name;            <span class="cm">// "this.name" = field, "name" = parameter</span>
+        <span class="kw">this</span>.gpa = gpa;
+        <span class="kw">this</span>.gradeLevel = gradeLevel;
+    }
+
+    <span class="cm">// ── ACCESSORS (getters) ────────────────────────────────────────────</span>
+    <span class="cm">// Return the value of a field without changing it</span>
+    <span class="cm">// By convention: getName(), getGpa(), getGradeLevel()</span>
+    <span class="kw">public</span> <span class="cls">String</span> getName() { <span class="kw">return</span> name; }
+    <span class="kw">public double</span> getGpa()  { <span class="kw">return</span> gpa;  }
+    <span class="kw">public int</span> getGradeLevel() { <span class="kw">return</span> gradeLevel; }
+
+    <span class="cm">// ── MUTATORS (setters) ─────────────────────────────────────────────</span>
+    <span class="cm">// Change the value of a field — usually void</span>
+    <span class="cm">// Good mutators validate input before changing</span>
+    <span class="kw">public void</span> setGpa(<span class="kw">double</span> newGpa) {
+        <span class="kw">if</span> (newGpa &gt;= <span class="num">0.0</span> &amp;&amp; newGpa &lt;= <span class="num">4.0</span>) {
+            gpa = newGpa;
+        }
+    }
+
+    <span class="cm">// ── OTHER METHODS ──────────────────────────────────────────────────</span>
+    <span class="cm">// Methods that perform actions or compute values</span>
+    <span class="kw">public boolean</span> isHonors() {
+        <span class="kw">return</span> gpa &gt;= <span class="num">3.5</span>;
+    }
+
+    <span class="kw">public</span> <span class="cls">String</span> getStatus() {
+        <span class="kw">if</span> (gpa &gt;= <span class="num">3.5</span>) <span class="kw">return</span> <span class="str">"Honors"</span>;
+        <span class="kw">else if</span> (gpa &gt;= <span class="num">2.0</span>) <span class="kw">return</span> <span class="str">"Good Standing"</span>;
+        <span class="kw">else</span> <span class="kw">return</span> <span class="str">"Probation"</span>;
+    }
+
+    <span class="cm">// ── toString ───────────────────────────────────────────────────────</span>
+    <span class="cm">// Called automatically when you print an object: System.out.println(s)</span>
+    <span class="kw">public</span> <span class="cls">String</span> toString() {
+        <span class="kw">return</span> name + <span class="str">" (Grade "</span> + gradeLevel + <span class="str">", GPA: "</span> + gpa + <span class="str">")"</span>;
+    }
+}
+
+<span class="cm">// Using the class in another class</span>
+<span class="cls">Student</span> s = <span class="kw">new</span> <span class="cls">Student</span>(<span class="str">"Alice"</span>, <span class="num">3.9</span>, <span class="num">11</span>);
+System.out.println(s.getName());     <span class="cm">// → "Alice"</span>
+System.out.println(s.isHonors());   <span class="cm">// → true</span>
+System.out.println(s);              <span class="cm">// → "Alice (Grade 11, GPA: 3.9)" via toString</span>
+s.setGpa(<span class="num">5.0</span>);                      <span class="cm">// rejected — 5.0 > 4.0, gpa stays 3.9</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>The this keyword — solving parameter shadowing</h3>
+    <p>When a constructor parameter has the same name as an instance variable, the parameter <em>shadows</em> (hides) the instance variable inside that scope. Without <code>this</code>, the name refers to the parameter, not the field. With <code>this</code>, you explicitly say "the instance variable that belongs to this object."</p>
+<pre><span class="cm">// BROKEN — parameter name shadows the field</span>
+<span class="kw">public</span> <span class="cls">Dog</span>(<span class="cls">String</span> name) {
+    name = name;    <span class="cm">// assigns parameter to ITSELF — does nothing to the field!</span>
+                    <span class="cm">// the field "name" remains null — a silent, hard-to-spot bug</span>
+}
+
+<span class="cm">// CORRECT — use this.fieldName to refer to the instance variable</span>
+<span class="kw">public</span> <span class="cls">Dog</span>(<span class="cls">String</span> name) {
+    <span class="kw">this</span>.name = name;   <span class="cm">// this.name = instance variable, name = parameter</span>
+}
+
+<span class="cm">// You can also just use different names and avoid the issue</span>
+<span class="kw">public</span> <span class="cls">Dog</span>(<span class="cls">String</span> dogName) {
+    name = dogName;   <span class="cm">// no this needed — no shadowing conflict</span>
+}</pre>
+    <div class="danger"><strong>The this. bug is one of the most common FRQ 2 mistakes</strong> The grader is specifically looking for correct field initialization. If you forget <code>this.</code> when there's a naming conflict, your object's fields will all be null or 0, and every subsequent method test will fail.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Static versus instance — shared vs. per-object</h3>
+    <p><strong>Instance</strong> variables and methods belong to individual objects. Each object has its own copy of instance variables. You call instance methods on a specific object.</p>
+    <p><strong>Static</strong> variables and methods belong to the class itself — there is exactly one copy, shared by all objects of that class. You call static methods on the class name. Static methods cannot directly access instance variables because they don't know which object to look at.</p>
+<pre><span class="kw">public class</span> <span class="cls">Counter</span> {
+    <span class="kw">private static int</span> totalCreated = <span class="num">0</span>;  <span class="cm">// ONE shared copy for the whole class</span>
+    <span class="kw">private int</span> myCount;                   <span class="cm">// each Counter object has its own</span>
+
+    <span class="kw">public</span> <span class="cls">Counter</span>() {
+        myCount = <span class="num">0</span>;
+        totalCreated++;   <span class="cm">// every new Counter increments the shared count</span>
+    }
+
+    <span class="kw">public void</span> increment() { myCount++; }         <span class="cm">// instance method</span>
+    <span class="kw">public int</span>  getCount()  { <span class="kw">return</span> myCount; }    <span class="cm">// instance method</span>
+
+    <span class="kw">public static int</span> getTotalCreated() {           <span class="cm">// static method</span>
+        <span class="kw">return</span> totalCreated;
+        <span class="cm">// Cannot access myCount here — which object's myCount?</span>
+    }
+}
+
+<span class="cls">Counter</span> a = <span class="kw">new</span> <span class="cls">Counter</span>();   <span class="cm">// totalCreated = 1</span>
+<span class="cls">Counter</span> b = <span class="kw">new</span> <span class="cls">Counter</span>();   <span class="cm">// totalCreated = 2</span>
+a.increment();
+a.increment();
+System.out.println(a.getCount());           <span class="cm">// → 2 (a's own count)</span>
+System.out.println(b.getCount());           <span class="cm">// → 0 (b's own count)</span>
+System.out.println(Counter.getTotalCreated()); <span class="cm">// → 2 (shared across all)</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Encapsulation — why everything is private</h3>
+    <p>Encapsulation is the principle of hiding the internal data of a class and only exposing it through controlled methods. Instance variables are private so that outside code cannot accidentally corrupt the object's data. The only way to read or modify the data is through the public methods you deliberately provide.</p>
+    <p>This is why on FRQ 2, instance variables must always be <code>private</code> and methods must always be <code>public</code>. The grader checks for this specifically. A public instance variable is an automatic point loss.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 6: UNIT 4 ═══════════ -->
+<div class="section" id="s6">
+  <div class="section-title"><span class="section-num">06</span> Unit 4 — Data Collections <span style="font-size:13px;font-weight:normal;color:var(--text2)">&nbsp;30–40% of exam · the most important unit</span></div>
+
+  <div class="subsection">
+    <h3>1D arrays — fixed-size collections</h3>
+    <p>An array is a fixed-size, ordered collection of elements all of the same type. The size is set when the array is created and cannot change. Arrays can store primitives (like <code>int[]</code>) or objects (like <code>String[]</code>). Indexing is 0-based — the first element is at index 0, the last is at index <code>length - 1</code>.</p>
+<pre><span class="cm">// Create with fixed size — elements default to 0, false, or null</span>
+<span class="kw">int</span>[]    scores = <span class="kw">new int</span>[<span class="num">5</span>];             <span class="cm">// [0, 0, 0, 0, 0]</span>
+<span class="kw">boolean</span>[] flags = <span class="kw">new boolean</span>[<span class="num">3</span>];         <span class="cm">// [false, false, false]</span>
+<span class="cls">String</span>[]  names = <span class="kw">new</span> <span class="cls">String</span>[<span class="num">4</span>];          <span class="cm">// [null, null, null, null]</span>
+
+<span class="cm">// Create with initializer list — size is determined by the values</span>
+<span class="kw">int</span>[] primes = {<span class="num">2</span>, <span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">11</span>};          <span class="cm">// length is 5</span>
+
+<span class="cm">// Access elements — always [index], 0-based</span>
+primes[<span class="num">0</span>]              <span class="cm">// → 2    (first)</span>
+primes[<span class="num">4</span>]              <span class="cm">// → 11   (last)</span>
+primes[primes.length-<span class="num">1</span>] <span class="cm">// → 11   (last, computed)</span>
+
+<span class="cm">// Modify elements</span>
+scores[<span class="num">2</span>] = <span class="num">95</span>;
+
+<span class="cm">// .length property — NO parentheses (it is not a method)</span>
+primes.length   <span class="cm">// → 5</span>
+
+<span class="cm">// Standard for loop — use when you need the index</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; primes.length; i++) {
+    primes[i] *= <span class="num">2</span>;   <span class="cm">// CAN modify elements this way</span>
+}
+
+<span class="cm">// Enhanced for — simpler, but read-only</span>
+<span class="kw">for</span> (<span class="kw">int</span> p : primes) {
+    System.out.println(p);   <span class="cm">// p is a copy; modifying p does nothing to primes</span>
+}</pre>
+    <div class="danger"><strong>ArrayIndexOutOfBoundsException</strong> This happens when you access an index that does not exist: either negative, or equal to or greater than <code>length</code>. The valid range is always 0 to <code>length - 1</code>. Using <code>arr[arr.length]</code> is always wrong — the last valid index is <code>arr[arr.length - 1]</code>.</div>
+    <div class="warn"><strong>Initialize max/min to arr[0], not to 0</strong> If your array is <code>{-5, -3, -8, -1}</code> and you initialize <code>int max = 0</code>, no element will ever exceed 0, and max stays at 0 — a completely wrong answer. Use <code>arr[0]</code> or <code>Integer.MIN_VALUE</code> as the starting value for max.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>ArrayList — dynamic resizable lists</h3>
+    <p>An ArrayList automatically grows when you add elements and shrinks when you remove them. Unlike arrays, it cannot store primitives — only objects. Use Integer instead of int, Double instead of double. The type parameter in angle brackets (<code>&lt;String&gt;</code>) specifies what kind of objects the list holds; this is enforced at compile time so you can't accidentally put the wrong type in.</p>
+<pre><span class="kw">import</span> java.util.ArrayList;
+
+<span class="cm">// Create empty ArrayLists</span>
+<span class="cls">ArrayList</span>&lt;<span class="cls">String</span>&gt;  names = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+<span class="cls">ArrayList</span>&lt;<span class="cls">Integer</span>&gt; nums  = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+
+<span class="cm">// Add elements</span>
+names.add(<span class="str">"Alice"</span>);          <span class="cm">// ["Alice"]</span>
+names.add(<span class="str">"Bob"</span>);            <span class="cm">// ["Alice", "Bob"]</span>
+names.add(<span class="str">"Carol"</span>);          <span class="cm">// ["Alice", "Bob", "Carol"]</span>
+names.add(<span class="num">1</span>, <span class="str">"Zara"</span>);         <span class="cm">// insert at index 1 → ["Alice", "Zara", "Bob", "Carol"]</span>
+
+<span class="cm">// Access and inspect</span>
+names.get(<span class="num">0</span>)          <span class="cm">// → "Alice"</span>
+names.size()          <span class="cm">// → 4</span>
+names.contains(<span class="str">"Bob"</span>) <span class="cm">// → true</span>
+
+<span class="cm">// Modify</span>
+names.set(<span class="num">2</span>, <span class="str">"Bryan"</span>)  <span class="cm">// replaces "Bob" with "Bryan", returns "Bob"</span>
+                       <span class="cm">// → ["Alice", "Zara", "Bryan", "Carol"]</span>
+
+<span class="cm">// Remove</span>
+names.remove(<span class="num">1</span>)        <span class="cm">// removes "Zara", returns "Zara", shifts left</span>
+                       <span class="cm">// → ["Alice", "Bryan", "Carol"]</span>
+
+<span class="cm">// Traverse — use size(), not length (ArrayList has no .length)</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; names.size(); i++) {
+    System.out.println(names.get(i));
+}
+
+<span class="cm">// Or enhanced for</span>
+<span class="kw">for</span> (<span class="cls">String</span> name : names) {
+    System.out.println(name);
+}</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>The ArrayList removal trap — why forward loops skip elements</h3>
+    <p>This is one of the most heavily tested ArrayList concepts. When you call <code>remove(i)</code>, every element after index i shifts one position to the left. If your loop then increments i normally, it jumps over the element that just shifted into position i.</p>
+<pre><span class="cm">// Setup: list = ["a", "b", "b", "c"]</span>
+<span class="cm">// Goal: remove all "b"s</span>
+
+<span class="cm">// ❌ BROKEN — forward loop skips the second "b"</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; list.size(); i++) {
+    <span class="kw">if</span> (list.get(i).equals(<span class="str">"b"</span>)) {
+        list.remove(i);
+        <span class="cm">// After removing first "b" at i=1: ["a", "b", "c"]</span>
+        <span class="cm">// Then i becomes 2 → skips "b" which is now at index 1!</span>
+    }
+}
+<span class="cm">// Result: ["a", "b", "c"] — still has a "b"!</span>
+
+<span class="cm">// ✅ CORRECT — iterate backwards (removes don't affect earlier indices)</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = list.size() - <span class="num">1</span>; i &gt;= <span class="num">0</span>; i--) {
+    <span class="kw">if</span> (list.get(i).equals(<span class="str">"b"</span>)) {
+        list.remove(i);
+    }
+}
+<span class="cm">// Result: ["a", "c"] ✓</span>
+
+<span class="cm">// ✅ ALSO CORRECT — decrement i after each removal</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; list.size(); i++) {
+    <span class="kw">if</span> (list.get(i).equals(<span class="str">"b"</span>)) {
+        list.remove(i);
+        i--;   <span class="cm">// step back to re-check the same index after shift</span>
+    }
+}
+
+<span class="cm">// ✅ ALSO CORRECT — build a new list of what you want to keep</span>
+<span class="cls">ArrayList</span>&lt;<span class="cls">String</span>&gt; result = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+<span class="kw">for</span> (<span class="cls">String</span> s : list) {
+    <span class="kw">if</span> (!s.equals(<span class="str">"b"</span>)) result.add(s);
+}</pre>
+  </div>
+
+  <div class="subsection">
+    <h3>2D arrays — grids, tables, and matrices</h3>
+    <p>A 2D array is an array of arrays. Think of it as a table with rows and columns. You always access elements as <code>[row][col]</code>. <code>grid.length</code> gives the number of rows. <code>grid[0].length</code> gives the number of columns in row 0 (most 2D arrays are rectangular, so this works for any row). FRQ 4 is always a 2D array question.</p>
+<pre><span class="cm">// Create</span>
+<span class="kw">int</span>[][] grid = <span class="kw">new int</span>[<span class="num">3</span>][<span class="num">4</span>];   <span class="cm">// 3 rows, 4 columns — all zeros</span>
+
+<span class="kw">int</span>[][] preset = {
+    {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>},    <span class="cm">// row 0</span>
+    {<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>},    <span class="cm">// row 1</span>
+    {<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>}     <span class="cm">// row 2</span>
+};
+
+<span class="cm">// Access — ALWAYS [row][col]</span>
+preset[<span class="num">0</span>][<span class="num">2</span>]   <span class="cm">// → 3   (row 0, col 2)</span>
+preset[<span class="num">2</span>][<span class="num">0</span>]   <span class="cm">// → 7   (row 2, col 0)</span>
+preset[<span class="num">1</span>][<span class="num">1</span>]   <span class="cm">// → 5   (the center)</span>
+
+<span class="cm">// Dimensions</span>
+preset.length       <span class="cm">// → 3 (rows)</span>
+preset[<span class="num">0</span>].length   <span class="cm">// → 3 (columns)</span>
+
+<span class="cm">// Traverse all elements — row by row</span>
+<span class="kw">for</span> (<span class="kw">int</span> r = <span class="num">0</span>; r &lt; preset.length; r++) {
+    <span class="kw">for</span> (<span class="kw">int</span> c = <span class="num">0</span>; c &lt; preset[r].length; c++) {
+        System.out.print(preset[r][c] + <span class="str">"\t"</span>);
+    }
+    System.out.println();
+}
+<span class="cm">// Output:  1  2  3</span>
+<span class="cm">//          4  5  6</span>
+<span class="cm">//          7  8  9</span>
+
+<span class="cm">// Enhanced for — each "row" is a 1D int array</span>
+<span class="kw">for</span> (<span class="kw">int</span>[] row : preset) {
+    <span class="kw">for</span> (<span class="kw">int</span> val : row) {
+        System.out.print(val + <span class="str">" "</span>);
+    }
+    System.out.println();
+}
+
+<span class="cm">// Sum all elements</span>
+<span class="kw">int</span> total = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span>[] row : preset)
+    <span class="kw">for</span> (<span class="kw">int</span> val : row)
+        total += val;   <span class="cm">// → 45</span>
+
+<span class="cm">// Sum one column (column 0: 1, 4, 7)</span>
+<span class="kw">int</span> colSum = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> r = <span class="num">0</span>; r &lt; preset.length; r++)
+    colSum += preset[r][<span class="num">0</span>];   <span class="cm">// → 12</span></pre>
+    <div class="danger"><strong>Row vs column confusion</strong> The most common 2D array MCQ trap: <code>grid[2][0]</code> means row 2, column 0 — NOT column 2, row 0. Always think <em>row first, then column</em>. If you visualize a grid like a spreadsheet: row is the y-coordinate (which row you're in), column is the x-coordinate (which position in that row).</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Linear (sequential) search</h3>
+    <p>Linear search checks each element one by one until it finds the target or runs out of elements. It works on any array — sorted or unsorted. It always finds the first occurrence. It returns the index if found, or -1 by convention if not found.</p>
+<pre><span class="kw">public static int</span> linearSearch(<span class="kw">int</span>[] arr, <span class="kw">int</span> target) {
+    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; arr.length; i++) {
+        <span class="kw">if</span> (arr[i] == target) {
+            <span class="kw">return</span> i;    <span class="cm">// found at index i — return immediately</span>
+        }
+    }
+    <span class="kw">return</span> -<span class="num">1</span>;   <span class="cm">// not found — -1 is the standard sentinel value</span>
+}
+
+<span class="cm">// In the worst case: the element isn't there, so every element is checked</span>
+<span class="cm">// Time complexity: O(n) — proportional to array size</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Binary search — only works on sorted arrays</h3>
+    <p>Binary search is dramatically faster than linear search but requires the array to be sorted first. It works by repeatedly halving the search range: check the middle element, and if the target is smaller, search the left half; if larger, search the right half. Each step eliminates half the remaining possibilities.</p>
+<pre><span class="cm">// Only call this if arr is already sorted ascending!</span>
+<span class="kw">public static int</span> binarySearch(<span class="kw">int</span>[] arr, <span class="kw">int</span> target) {
+    <span class="kw">int</span> lo = <span class="num">0</span>, hi = arr.length - <span class="num">1</span>;
+
+    <span class="kw">while</span> (lo &lt;= hi) {
+        <span class="kw">int</span> mid = (lo + hi) / <span class="num">2</span>;
+
+        <span class="kw">if</span> (arr[mid] == target) {
+            <span class="kw">return</span> mid;            <span class="cm">// found</span>
+        } <span class="kw">else if</span> (arr[mid] &lt; target) {
+            lo = mid + <span class="num">1</span>;          <span class="cm">// target is in right half</span>
+        } <span class="kw">else</span> {
+            hi = mid - <span class="num">1</span>;          <span class="cm">// target is in left half</span>
+        }
+    }
+    <span class="kw">return</span> -<span class="num">1</span>;   <span class="cm">// not found</span>
+}
+
+<span class="cm">// Trace example: arr = {1, 3, 5, 7, 9, 11, 13}, target = 7</span>
+<span class="cm">// Round 1: lo=0 hi=6 mid=3 arr[3]=7 == 7 → return 3 ✓</span>
+
+<span class="cm">// Trace example: target = 11</span>
+<span class="cm">// Round 1: lo=0 hi=6 mid=3 arr[3]=7 < 11 → lo=4</span>
+<span class="cm">// Round 2: lo=4 hi=6 mid=5 arr[5]=11 == 11 → return 5 ✓</span></pre>
+    <div class="danger"><strong>Binary search on unsorted data gives wrong results silently</strong> This is a major exam trap. If you call binary search on an unsorted array, it will not throw an exception — it will just return a wrong index or -1. The AP exam uses this specifically to test whether you understand the precondition.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Selection sort — find the minimum and swap it forward</h3>
+    <p>Selection sort works by finding the smallest element in the unsorted portion and swapping it to the front. After one pass, the smallest element is in position 0. After two passes, the two smallest are in positions 0 and 1. After k passes, the first k elements are in their final sorted positions.</p>
+<pre><span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; arr.length - <span class="num">1</span>; i++) {
+    <span class="cm">// Find index of smallest element in arr[i..length-1]</span>
+    <span class="kw">int</span> minIdx = i;
+    <span class="kw">for</span> (<span class="kw">int</span> j = i + <span class="num">1</span>; j &lt; arr.length; j++) {
+        <span class="kw">if</span> (arr[j] &lt; arr[minIdx]) {
+            minIdx = j;
+        }
+    }
+    <span class="cm">// Swap arr[i] with arr[minIdx]</span>
+    <span class="kw">int</span> temp = arr[i];
+    arr[i] = arr[minIdx];
+    arr[minIdx] = temp;
+}
+
+<span class="cm">// Example: {5, 2, 8, 1, 9}</span>
+<span class="cm">// After pass 0: {1, 2, 8, 5, 9}  ← 1 is in final position</span>
+<span class="cm">// After pass 1: {1, 2, 8, 5, 9}  ← 2 is in final position (no swap needed)</span>
+<span class="cm">// After pass 2: {1, 2, 5, 8, 9}  ← 5 is in final position</span>
+<span class="cm">// After pass 3: {1, 2, 5, 8, 9}  ← done</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Insertion sort — build a sorted region one element at a time</h3>
+    <p>Insertion sort takes each element and inserts it into its correct position within the already-sorted portion of the array (to its left). Elements larger than the key shift right to make room. It does not swap adjacent pairs repeatedly — that would be bubble sort, which is not on the AP exam.</p>
+<pre><span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt; arr.length; i++) {
+    <span class="kw">int</span> key = arr[i];    <span class="cm">// element being inserted</span>
+    <span class="kw">int</span> j = i - <span class="num">1</span>;
+
+    <span class="cm">// Shift elements larger than key to the right</span>
+    <span class="kw">while</span> (j &gt;= <span class="num">0</span> &amp;&amp; arr[j] &gt; key) {
+        arr[j + <span class="num">1</span>] = arr[j];
+        j--;
+    }
+    arr[j + <span class="num">1</span>] = key;   <span class="cm">// insert key into its correct position</span>
+}
+
+<span class="cm">// Example: {5, 2, 8, 1, 9}</span>
+<span class="cm">// i=1: key=2, shift 5 right → {5,5,8,1,9}, insert 2 → {2,5,8,1,9}</span>
+<span class="cm">// i=2: key=8, 5 < 8 so no shift needed → {2,5,8,1,9}</span>
+<span class="cm">// i=3: key=1, shift 8,5,2 right → {2,2,5,8,9}, insert 1 → {1,2,5,8,9}</span>
+<span class="cm">// i=4: key=9, 8 < 9 so no shift → {1,2,5,8,9}</span></pre>
+    <div class="tip"><strong>MCQ sorting pattern</strong> "After k passes of selection sort, what is true?" Answer: exactly the first k elements are in their final, correct positions. The rest of the array could be in any order. "After k passes of insertion sort?" Answer: the first k+1 elements are sorted relative to each other (though not necessarily in their final positions relative to the full array).</div>
+  </div>
+
+  <div class="subsection">
+    <h3>Recursion — methods that call themselves</h3>
+    <p>Recursion is when a method calls itself to solve a smaller version of the same problem. It must have two things: a base case that stops the recursion by returning directly (without another recursive call), and a recursive case that calls itself with a smaller/simpler input, moving toward the base case.</p>
+    <p>On the 2026 exam, you will NOT write recursive methods on FRQs. You will trace recursive code on MCQ — meaning you need to predict the output of given recursive code. The key skill is understanding the call stack: each call waits for the deeper call to return before it finishes.</p>
+<pre><span class="cm">// Classic example: factorial</span>
+<span class="kw">public static int</span> factorial(<span class="kw">int</span> n) {
+    <span class="kw">if</span> (n == <span class="num">0</span>) <span class="kw">return</span> <span class="num">1</span>;       <span class="cm">// BASE CASE — stop recursion</span>
+    <span class="kw">return</span> n * factorial(n - <span class="num">1</span>); <span class="cm">// RECURSIVE CASE — smaller problem</span>
+}
+
+<span class="cm">// Tracing factorial(4) — build the call stack, then unwind:</span>
+<span class="cm">// factorial(4) = 4 * factorial(3)</span>
+<span class="cm">//                    factorial(3) = 3 * factorial(2)</span>
+<span class="cm">//                                       factorial(2) = 2 * factorial(1)</span>
+<span class="cm">//                                                          factorial(1) = 1 * factorial(0)</span>
+<span class="cm">//                                                                             factorial(0) = 1 ← base case</span>
+<span class="cm">// Now unwind: factorial(1) = 1*1 = 1</span>
+<span class="cm">//             factorial(2) = 2*1 = 2</span>
+<span class="cm">//             factorial(3) = 3*2 = 6</span>
+<span class="cm">//             factorial(4) = 4*6 = 24</span>
+
+<span class="cm">// Print-BEFORE vs print-AFTER — completely different output order</span>
+<span class="kw">static void</span> printDown(<span class="kw">int</span> n) {
+    <span class="kw">if</span> (n == <span class="num">0</span>) <span class="kw">return</span>;
+    System.out.println(n);      <span class="cm">// prints BEFORE recursing → 3, 2, 1</span>
+    printDown(n - <span class="num">1</span>);
+}
+
+<span class="kw">static void</span> printUp(<span class="kw">int</span> n) {
+    <span class="kw">if</span> (n == <span class="num">0</span>) <span class="kw">return</span>;
+    printUp(n - <span class="num">1</span>);
+    System.out.println(n);      <span class="cm">// prints AFTER recursing → 1, 2, 3</span>
+}</pre>
+    <div class="warn"><strong>Missing base case = StackOverflowError</strong> If a recursive method never reaches its base case, it calls itself forever until the program crashes. An incorrect base case (one that fires too early) produces wrong answers silently — no crash, just wrong output.</div>
+  </div>
+
+  <div class="subsection">
+    <h3>File reading with Scanner — new for 2026</h3>
+    <p>Reading data from text files is a brand new topic on this year's exam. A Scanner can be pointed at a file instead of the keyboard — the same methods work either way. The key pattern is: use a <code>while</code> loop with <code>hasNextInt()</code> (or <code>hasNext()</code> or <code>hasNextLine()</code>) as the condition, and the corresponding <code>nextInt()</code> (or <code>next()</code> or <code>nextLine()</code>) inside the loop body.</p>
+<pre><span class="kw">import</span> java.util.Scanner;
+<span class="kw">import</span> java.io.File;
+
+<span class="cm">// Open a file and read all integers from it</span>
+<span class="cls">Scanner</span> sc = <span class="kw">new</span> <span class="cls">Scanner</span>(<span class="kw">new</span> <span class="cls">File</span>(<span class="str">"scores.txt"</span>));
+<span class="cls">ArrayList</span>&lt;<span class="cls">Integer</span>&gt; scores = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+
+<span class="kw">while</span> (sc.hasNextInt()) {           <span class="cm">// check if another int exists before reading</span>
+    scores.add(sc.nextInt());       <span class="cm">// read it and add to list</span>
+}
+sc.close();
+
+<span class="cm">// Read a file line by line</span>
+<span class="cls">Scanner</span> sc2 = <span class="kw">new</span> <span class="cls">Scanner</span>(<span class="kw">new</span> <span class="cls">File</span>(<span class="str">"names.txt"</span>));
+<span class="kw">while</span> (sc2.hasNextLine()) {
+    <span class="cls">String</span> line = sc2.nextLine();
+    <span class="cm">// process the line</span>
+}
+
+<span class="cm">// Read a file with mixed types: "Alice 95" on each line</span>
+<span class="cls">Scanner</span> sc3 = <span class="kw">new</span> <span class="cls">Scanner</span>(<span class="kw">new</span> <span class="cls">File</span>(<span class="str">"data.txt"</span>));
+<span class="kw">while</span> (sc3.hasNext()) {
+    <span class="cls">String</span> name  = sc3.next();      <span class="cm">// reads "Alice"</span>
+    <span class="kw">int</span>    score = sc3.nextInt();   <span class="cm">// reads 95</span>
+}
+
+<span class="cm">// Compute statistics from file data</span>
+<span class="kw">int</span> sum = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> s : scores) sum += s;
+<span class="kw">double</span> avg = (<span class="kw">double</span>) sum / scores.size();
+System.out.println(<span class="str">"Average: "</span> + avg);</pre>
+    <div class="tip"><strong>The FRQ will usually give you the Scanner already set up</strong> You most likely will not need to write the <code>new Scanner(new File(...))</code> line. Focus on knowing: which method checks for more data, which method reads the next value, and how to loop until the file is exhausted.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 7: MATH.RANDOM ═══════════ -->
+<div class="section" id="s7">
+  <div class="section-title"><span class="section-num">07</span> Math.random() — Complete Guide</div>
+
+  <div class="subsection">
+    <h3>What Math.random() returns</h3>
+    <p><code>Math.random()</code> returns a random <code>double</code> value in the half-open interval <strong>[0.0, 1.0)</strong>. This means 0.0 can be returned, but 1.0 can never be returned. The value is different each time you call it. By itself, it is not very useful — you need to scale and shift it to get numbers in your desired range.</p>
+  </div>
+
+  <div class="subsection">
+    <h3>The universal formula — derive it once, use it forever</h3>
+<pre><span class="cm">// The formula for a random int from min to max INCLUSIVE:</span>
+(<span class="kw">int</span>)(Math.random() * (max - min + <span class="num">1</span>)) + min
+
+<span class="cm">// HOW IT WORKS — step by step with [1, 6] as the example:</span>
+<span class="cm">// Step 1: (max - min + 1) = 6 - 1 + 1 = 6   ← how many possible values</span>
+<span class="cm">// Step 2: Math.random() * 6 → a double in [0.0, 6.0)</span>
+<span class="cm">//         possible values include 0.0, 0.001, 2.73, 5.999...</span>
+<span class="cm">//         but NEVER 6.0 (because Math.random() never returns 1.0)</span>
+<span class="cm">// Step 3: (int)(...) truncates to: 0, 1, 2, 3, 4, or 5</span>
+<span class="cm">//         (never 6, which confirms the formula is correct)</span>
+<span class="cm">// Step 4: + min (+ 1): 1, 2, 3, 4, 5, or 6  ← desired range!</span>
+<span class="kw">int</span> die = (<span class="kw">int</span>)(Math.random() * <span class="num">6</span>) + <span class="num">1</span>;  <span class="cm">// → random int from 1 to 6</span></pre>
+    <table>
+      <tr><th>Goal</th><th>Formula</th><th>Produces</th></tr>
+      <tr><td>Random int 0–9</td><td><code>(int)(Math.random() * 10)</code></td><td>0, 1, 2, ..., 9</td></tr>
+      <tr><td>Random int 1–10</td><td><code>(int)(Math.random() * 10) + 1</code></td><td>1, 2, 3, ..., 10</td></tr>
+      <tr><td>Dice roll 1–6</td><td><code>(int)(Math.random() * 6) + 1</code></td><td>1, 2, 3, 4, 5, 6</td></tr>
+      <tr><td>Random int 5–15</td><td><code>(int)(Math.random() * 11) + 5</code></td><td>5, 6, 7, ..., 15</td></tr>
+      <tr><td>Random int 0–100</td><td><code>(int)(Math.random() * 101)</code></td><td>0, 1, 2, ..., 100</td></tr>
+      <tr><td>Random int -5 to 5</td><td><code>(int)(Math.random() * 11) - 5</code></td><td>-5, -4, ..., 0, ..., 5</td></tr>
+      <tr><td>Random even 0–10</td><td><code>((int)(Math.random() * 6)) * 2</code></td><td>0, 2, 4, 6, 8, 10</td></tr>
+      <tr><td>Coin flip boolean</td><td><code>Math.random() &lt; 0.5</code></td><td>true or false, 50/50</td></tr>
+      <tr><td>30% chance of true</td><td><code>Math.random() &lt; 0.3</code></td><td>true 30% of the time</td></tr>
+    </table>
+    <div class="danger"><strong>Parentheses trap</strong> <code>(int) Math.random() * 10</code> is WRONG. Without the inner parentheses, the cast applies to <code>Math.random()</code> first — it becomes 0 (since 0.anything casts to 0), then 0 * 10 = 0. Always write <code>(int)(Math.random() * 10)</code>.</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 8: FRQ STRATEGY ═══════════ -->
+<div class="section" id="s8">
+  <div class="section-title"><span class="section-num">08</span> FRQ Strategy &amp; Question-Type Guide</div>
+
+  <div class="subsection">
+    <h3>The 4 FRQ types — same structure every year, every exam</h3>
+    <p>The four FRQ types have appeared on every AP CSA exam in the same order for many years. Knowing the type tells you immediately what to write and what the grader is looking for.</p>
+    <div class="frq-grid">
+      <div class="frq-card">
+        <div class="frq-head"><span class="frq-num">FRQ 1</span><span class="frq-title">Methods &amp; Control</span><span class="frq-pts">9 pts · ~25 min</span></div>
+        <div class="frq-body">
+          <p>Write two methods (or a constructor + method) for a partially complete class. Has Part (a) and Part (b). Part (b) typically calls the method from Part (a) — so you earn points on Part (b) even if Part (a) is wrong, as long as your call is correct.</p>
+          <ul>
+            <li>Part (a): usually a loop or conditional (4–5 pts)</li>
+            <li>Part (b): usually involves String methods (3–4 pts)</li>
+            <li>Always write the method signature first</li>
+          </ul>
+        </div>
+      </div>
+      <div class="frq-card">
+        <div class="frq-head"><span class="frq-num">FRQ 2</span><span class="frq-title">Class Design</span><span class="frq-pts">9 pts · ~25 min</span></div>
+        <div class="frq-body">
+          <p>Write a complete class from scratch. You will be given a description of what the class should do and a specification table showing example interactions. Points are awarded for each part of the class structure.</p>
+          <ul>
+            <li>Class header: <code>public class Name</code></li>
+            <li>Private instance variables</li>
+            <li>Constructor with correct <code>this.</code></li>
+            <li>Required methods with correct return types</li>
+          </ul>
+        </div>
+      </div>
+      <div class="frq-card">
+        <div class="frq-head"><span class="frq-num">FRQ 3</span><span class="frq-title">ArrayList</span><span class="frq-pts">9 pts · ~18 min</span></div>
+        <div class="frq-body">
+          <p>Write one method that processes an ArrayList. Tasks include searching for elements, filtering (removing elements that meet a condition), building a new list, or modifying elements. No arrays in this question — ArrayList only.</p>
+          <ul>
+            <li>Use <code>list.get(i)</code>, <code>list.size()</code>, <code>list.add()</code>, <code>list.remove()</code></li>
+            <li>Watch for the removal-shift bug</li>
+            <li>Iterate backwards if removing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="frq-card">
+        <div class="frq-head"><span class="frq-num">FRQ 4</span><span class="frq-title">2D Array</span><span class="frq-pts">9 pts · ~20 min</span></div>
+        <div class="frq-body">
+          <p>Work with a 2D array using nested loops. Common tasks: sum a row or column, search for a value, count elements meeting a condition, or transform the grid in some way.</p>
+          <ul>
+            <li>Always use <code>[row][col]</code> — never swap these</li>
+            <li><code>grid.length</code> = rows, <code>grid[0].length</code> = cols</li>
+            <li>Often simpler than FRQ 1 or 2 — consider doing it early</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h3>Time strategy during Section II</h3>
+    <p>You have exactly 90 minutes for 4 questions. The Bluebook app lets you navigate freely between all four questions. Do not work through them in order if a later question is easier for you. A good strategy: scan all four questions first (2 minutes), then do them in your personal order of confidence, and save 2 minutes at the end to catch missing semicolons and return statements.</p>
+    <p>Suggested time allocation: FRQ 1: 25 minutes, FRQ 2: 25 minutes, FRQ 3: 18 minutes, FRQ 4: 20 minutes. These are rough targets — adjust based on how quickly each question clicks for you.</p>
+  </div>
+
+  <div class="subsection">
+    <h3>How FRQ scoring (rubrics) work</h3>
+    <p>Each FRQ is scored by a human grader using a detailed rubric worth 9 points. The rubric awards points for specific correct elements: writing a correct method signature earns a point, using instance variables correctly earns a point, having correct loop bounds earns a point, etc. This means:</p>
+    <ul>
+      <li>You can score 7 or 8 out of 9 with imperfect code, as long as your structure and logic are right</li>
+      <li>Never leave a question blank — partial credit is generous and intentional</li>
+      <li>Writing a correct method signature at the start earns a free point even if the body is wrong</li>
+      <li>Each part of a two-part question is graded separately</li>
+      <li>Minor syntax errors (missing semicolons, slightly wrong method name) are usually forgiven if the intent is clear</li>
+      <li>Major errors (wrong return type, missing braces, completely wrong logic) cost points</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <h3>FRQ writing rules — things graders look for</h3>
+<pre><span class="cm">// ✅ ALWAYS declare types — never just write "x = 5"</span>
+<span class="kw">int</span> x = <span class="num">5</span>;          <span class="cm">// correct</span>
+<span class="cm">// x = 5;            wrong — graders penalize this</span>
+
+<span class="cm">// ✅ Use the EXACT parameter names from the problem</span>
+<span class="cm">// If the problem says the parameter is called "gradeList", call it "gradeList"</span>
+
+<span class="cm">// ✅ Call Part (a)'s method in Part (b), even if Part (a) is wrong</span>
+<span class="cm">// You earn the "calls Part (a)" point as long as the call is syntactically correct</span>
+
+<span class="cm">// ✅ Return, don't print</span>
+<span class="kw">return</span> result;         <span class="cm">// almost always what FRQ methods ask for</span>
+System.out.println(result);  <span class="cm">// almost never correct — only print if explicitly asked</span>
+
+<span class="cm">// ✅ You do NOT need import statements on FRQs</span>
+<span class="cm">// ArrayList, Scanner, etc. are assumed to be imported</span>
+
+<span class="cm">// ✅ Use the instance variables — don't redeclare them</span>
+<span class="cm">// If the class has a field called "scores", access it directly as "scores"</span>
+<span class="cm">// Don't write: ArrayList scores = new ArrayList<>(); inside a method</span>
+
+<span class="cm">// ✅ FRQ 2 class structure — always use this template</span>
+<span class="kw">public class</span> <span class="cls">ClassName</span> {
+    <span class="kw">private</span> <span class="cls">Type</span> field;          <span class="cm">// private fields</span>
+    <span class="kw">public</span> <span class="cls">ClassName</span>(<span class="cls">Type</span> param) {
+        <span class="kw">this</span>.field = param;      <span class="cm">// this.field to avoid shadowing</span>
+    }
+    <span class="kw">public</span> <span class="cls">ReturnType</span> method() {
+        <span class="kw">return</span> value;
+    }
+}</pre>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 9: TRAPS ═══════════ -->
+<div class="section" id="s9">
+  <div class="section-title"><span class="section-num">09</span> Top 15 Exam Traps &amp; Common Mistakes</div>
+  <p>These are the specific errors that appear on almost every practice exam and cost students 2–5 points each. Read every one carefully — recognizing the trap is the first step to avoiding it.</p>
+
+  <ul class="trap-list">
+    <li>
+      <span class="trap-num">1</span>
+      <div><strong>Integer division truncates — it does not round.</strong> <code>7 / 2</code> gives <code>3</code>, not 3.5 or 4. <code>1 / 3</code> gives <code>0</code>. <code>-7 / 2</code> gives <code>-3</code> (truncates toward zero, not toward -4). To get a decimal result, at least one operand must be a double: write <code>(double) 7 / 2</code> or <code>7.0 / 2</code>.</div>
+    </li>
+    <li>
+      <span class="trap-num">2</span>
+      <div><strong>String == versus .equals().</strong> <code>==</code> tests whether two variables point to the exact same object in memory. Two separate String objects containing "hello" will return false with <code>==</code> even though their contents are identical. Always use <code>.equals()</code> to compare String values. This mistake silently causes logic errors that look like the code is doing nothing wrong.</div>
+    </li>
+    <li>
+      <span class="trap-num">3</span>
+      <div><strong>Off-by-one in arrays.</strong> Array indices go from 0 to <code>length - 1</code>. The first element is <code>arr[0]</code>. The last element is <code>arr[arr.length - 1]</code>. Accessing <code>arr[arr.length]</code> always throws ArrayIndexOutOfBoundsException. In loops, use <code>i &lt; arr.length</code>, not <code>i &lt;= arr.length</code>.</div>
+    </li>
+    <li>
+      <span class="trap-num">4</span>
+      <div><strong>substring to-index is exclusive.</strong> <code>"hello".substring(1, 4)</code> gives <code>"ell"</code>, not <code>"ello"</code>. The character at index 4 ('o') is NOT included. The length of the result is always <em>to − from</em>. Many students instinctively think "up to and including index 4" — it is actually "stop before index 4."</div>
+    </li>
+    <li>
+      <span class="trap-num">5</span>
+      <div><strong>ArrayList removal in a forward loop skips elements.</strong> When you call <code>list.remove(i)</code>, every element after index i shifts left by one. Your loop then increments i, jumping over the element that just moved into position i. Always iterate backwards (<code>for (int i = list.size()-1; i >= 0; i--)</code>) or decrement i after each removal.</div>
+    </li>
+    <li>
+      <span class="trap-num">6</span>
+      <div><strong>Math.random() parentheses.</strong> <code>(int) Math.random() * 10</code> is wrong because the cast applies before the multiplication: <code>Math.random()</code> (say, 0.73) gets cast to 0, then 0 * 10 = 0. The result is always 0. The correct form: <code>(int)(Math.random() * 10)</code> — wrap the multiplication in parentheses so it happens before the cast.</div>
+    </li>
+    <li>
+      <span class="trap-num">7</span>
+      <div><strong>Strings are immutable — methods return new Strings.</strong> Calling <code>s.toUpperCase()</code> does NOT change s. Neither does <code>s.substring(1)</code> or any other String method. If you want the result, you must capture it: <code>s = s.toUpperCase()</code>. Forgetting this is especially common when building a modified version of a String in a loop.</div>
+    </li>
+    <li>
+      <span class="trap-num">8</span>
+      <div><strong>Initializing max/min to 0 instead of arr[0].</strong> If all elements in the array are negative, initializing <code>max = 0</code> means no element will ever exceed 0, so max stays 0 — completely wrong. Initialize max to <code>arr[0]</code> (the first element) or to <code>Integer.MIN_VALUE</code>. Similarly, initialize min to <code>arr[0]</code> or <code>Integer.MAX_VALUE</code>.</div>
+    </li>
+    <li>
+      <span class="trap-num">9</span>
+      <div><strong>Enhanced for loop cannot modify array elements.</strong> Inside <code>for (int n : arr)</code>, n is a copy of each element. Writing <code>n = 0</code> inside the loop changes the local copy only — the array is completely unchanged. Use a standard indexed for loop if you need to modify elements: <code>for (int i = 0; i &lt; arr.length; i++) arr[i] = 0;</code></div>
+    </li>
+    <li>
+      <span class="trap-num">10</span>
+      <div><strong>Math.pow and Math.sqrt always return double.</strong> Even <code>Math.pow(2, 3)</code> returns <code>8.0</code>, not <code>8</code>. If your code assigns this to an int variable without casting, you will get a compile error. Fix: <code>int result = (int) Math.pow(2, 3)</code>.</div>
+    </li>
+    <li>
+      <span class="trap-num">11</span>
+      <div><strong>2D array indexing: [row][col], not [col][row].</strong> The row index always comes first. <code>grid[2][0]</code> means row 2, column 0 — NOT column 2, row 0. This is swapped in many MCQ questions as a distractor. If you visualize the grid like a spreadsheet: the first bracket is the row number (top-to-bottom), the second is the column number (left-to-right).</div>
+    </li>
+    <li>
+      <span class="trap-num">12</span>
+      <div><strong>The this. parameter shadowing bug in constructors.</strong> When a constructor parameter has the same name as an instance variable, writing <code>name = name</code> does nothing — it assigns the parameter to itself. The instance variable stays null or 0. Always write <code>this.name = name</code> to explicitly distinguish the instance variable from the parameter.</div>
+    </li>
+    <li>
+      <span class="trap-num">13</span>
+      <div><strong>ArrayList requires wrapper types, not primitives.</strong> <code>ArrayList&lt;int&gt;</code> is a compile error. You must use <code>ArrayList&lt;Integer&gt;</code>. Similarly: use <code>Double</code> not <code>double</code>, <code>Boolean</code> not <code>boolean</code>. Java's autoboxing converts between int and Integer automatically, but only after you declare the ArrayList with the correct wrapper type.</div>
+    </li>
+    <li>
+      <span class="trap-num">14</span>
+      <div><strong>Double.MIN_VALUE is the smallest POSITIVE double, not the most negative.</strong> It equals approximately 5×10⁻³²⁴. To initialize a variable for minimum-finding with doubles, use <code>Double.MAX_VALUE</code> (largest possible double), not <code>Double.MIN_VALUE</code>. This is the opposite of what the name suggests and is a well-known exam trap.</div>
+    </li>
+    <li>
+      <span class="trap-num">15</span>
+      <div><strong>Binary search on unsorted arrays gives wrong results silently.</strong> Binary search will not throw an exception if the array is unsorted — it will just return a wrong index or -1. The exam uses this as a trap: code that looks syntactically correct but violates the precondition (sorted array). Always confirm the array is sorted before applying binary search.</div>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ═══════════ SECTION 10: LOOP TRACING ═══════════ -->
+<div class="section" id="s10">
+  <div class="section-title"><span class="section-num">10</span> Loop Tracing &amp; MCQ Patterns</div>
+
+  <div class="subsection">
+    <h3>Why tracing matters — and how to do it systematically</h3>
+    <p>More than half of all MCQ questions require you to trace code — follow it line by line, track variable values, and predict the output or final state. This is a skill that improves dramatically with practice. The key is building a table: one column per variable, one row per iteration. Never try to do it in your head for loops with more than 2 iterations.</p>
+<pre><span class="cm">// Example: trace this code and find the final value of result</span>
+<span class="kw">int</span> result = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">4</span>; i++) {
+    <span class="kw">if</span> (i % <span class="num">2</span> != <span class="num">0</span>) {
+        result += i;
+    }
+}
+
+<span class="cm">// Build the table:</span>
+<span class="cm">// i=1: 1%2=1 ≠ 0 → result = 0+1 = 1</span>
+<span class="cm">// i=2: 2%2=0 == 0 → skip (condition false)</span>
+<span class="cm">// i=3: 3%2=1 ≠ 0 → result = 1+3 = 4</span>
+<span class="cm">// i=4: 4%2=0 == 0 → skip</span>
+<span class="cm">// i=5: 5 <= 4 is FALSE → loop ends</span>
+<span class="cm">// Final: result = 4  (sum of odd numbers 1 to 4)</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>5 traced examples — the most common MCQ patterns</h3>
+<pre><span class="cm">// ── Pattern 1: What does this print? ──────────────────────────────</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+    <span class="kw">for</span> (<span class="kw">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) {
+        <span class="kw">if</span> (i == j) System.out.print(i + <span class="str">" "</span>);
+    }
+}
+<span class="cm">// i=0,j=0: 0==0 → print "0 "</span>
+<span class="cm">// i=0,j=1: 0≠1 → skip   i=0,j=2: 0≠2 → skip</span>
+<span class="cm">// i=1,j=0: 1≠0 → skip   i=1,j=1: 1==1 → print "1 "   i=1,j=2: skip</span>
+<span class="cm">// i=2,j=0: skip   i=2,j=1: skip   i=2,j=2: 2==2 → print "2 "</span>
+<span class="cm">// Output: 0 1 2    (prints when row index == column index = diagonal)</span>
+
+<span class="cm">// ── Pattern 2: How many times does this execute? ───────────────────</span>
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">3</span>; i &lt;= <span class="num">15</span>; i += <span class="num">3</span>) { ... }
+<span class="cm">// i = 3, 6, 9, 12, 15 → 5 iterations</span>
+<span class="cm">// Formula: (max - start) / step + 1 = (15-3)/3 + 1 = 4 + 1 = 5</span>
+
+<span class="cm">// ── Pattern 3: What is x after this loop? ─────────────────────────</span>
+<span class="kw">int</span> x = <span class="num">2</span>;
+<span class="kw">while</span> (x &lt; <span class="num">50</span>) { x *= <span class="num">3</span>; }
+<span class="cm">// x: 2 → 6 → 18 → 54  (54 >= 50, loop stops)</span>
+<span class="cm">// Final: x = 54</span>
+
+<span class="cm">// ── Pattern 4: Trace array processing ─────────────────────────────</span>
+<span class="kw">int</span>[] arr = {<span class="num">3</span>, <span class="num">1</span>, <span class="num">4</span>, <span class="num">1</span>, <span class="num">5</span>, <span class="num">9</span>};
+<span class="kw">int</span> count = <span class="num">0</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; arr.length - <span class="num">1</span>; i++) {
+    <span class="kw">if</span> (arr[i] &gt; arr[i+<span class="num">1</span>]) count++;
+}
+<span class="cm">// Check consecutive pairs:</span>
+<span class="cm">// (3,1): 3>1 ✓ count=1</span>
+<span class="cm">// (1,4): 1>4 ✗</span>
+<span class="cm">// (4,1): 4>1 ✓ count=2</span>
+<span class="cm">// (1,5): 1>5 ✗</span>
+<span class="cm">// (5,9): 5>9 ✗</span>
+<span class="cm">// Final: count = 2  (counts times array "goes down")</span>
+
+<span class="cm">// ── Pattern 5: String building loop ───────────────────────────────</span>
+<span class="cls">String</span> s = <span class="str">"abcde"</span>;
+<span class="cls">String</span> result = <span class="str">""</span>;
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; s.length(); i += <span class="num">2</span>) {
+    result += s.substring(i, i + <span class="num">1</span>);
+}
+<span class="cm">// i=0: "a",  i=2: "c",  i=4: "e"</span>
+<span class="cm">// result = "ace"  (every other character)</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>MCQ strategy — how to consistently get more right</h3>
+    <p><strong>Predict before looking at choices.</strong> Cover the answer choices with your hand or finger. Work out the answer from the code. Then uncover the choices and find your answer. This prevents the plausible-sounding wrong answers from influencing your reasoning before you have done the work.</p>
+    <p><strong>Eliminate impossible answers.</strong> If you know the loop runs exactly 5 times, eliminate any choice that implies 4 or 6 iterations. Even if you can't work out the exact output, narrowing from 4 choices to 2 dramatically improves your odds.</p>
+    <p><strong>Check the boundaries first.</strong> On array/ArrayList problems, trace what happens at index 0 and at the last index. Most bugs live at the edges. The middle elements usually work fine — it is i=0 and i=length-1 where off-by-one errors appear.</p>
+    <p><strong>Answer every single question.</strong> There is no penalty for wrong answers on the AP CSA multiple choice. A blank answer is guaranteed 0 points. A guess gives you at least a 25% chance. Never leave a question blank.</p>
+  </div>
+
+  <div class="subsection">
+    <h3>Operator precedence — order of operations in Java</h3>
+    <p>Java evaluates operators in a fixed priority order. When operators have equal precedence, they associate left to right. Use parentheses to override the default order.</p>
+    <table>
+      <tr><th>Priority</th><th>Operators</th><th>Description</th></tr>
+      <tr><td>1 (highest)</td><td><code>( )</code></td><td>Parentheses — always first</td></tr>
+      <tr><td>2</td><td><code>!</code>&nbsp;&nbsp;<code>-</code>&nbsp;&nbsp;<code>++</code>&nbsp;&nbsp;<code>--</code>&nbsp;&nbsp;<code>(type)</code></td><td>Unary operators and casts</td></tr>
+      <tr><td>3</td><td><code>*</code>&nbsp;&nbsp;<code>/</code>&nbsp;&nbsp;<code>%</code></td><td>Multiplication, division, modulo</td></tr>
+      <tr><td>4</td><td><code>+</code>&nbsp;&nbsp;<code>-</code></td><td>Addition, subtraction</td></tr>
+      <tr><td>5</td><td><code>&lt;</code>&nbsp;&nbsp;<code>&gt;</code>&nbsp;&nbsp;<code>&lt;=</code>&nbsp;&nbsp;<code>&gt;=</code></td><td>Relational comparisons</td></tr>
+      <tr><td>6</td><td><code>==</code>&nbsp;&nbsp;<code>!=</code></td><td>Equality comparisons</td></tr>
+      <tr><td>7</td><td><code>&amp;&amp;</code></td><td>Logical AND</td></tr>
+      <tr><td>8</td><td><code>||</code></td><td>Logical OR</td></tr>
+      <tr><td>9 (lowest)</td><td><code>=</code>&nbsp;&nbsp;<code>+=</code>&nbsp;&nbsp;<code>-=</code>&nbsp;&nbsp;etc.</td><td>Assignment</td></tr>
+    </table>
+<pre><span class="cm">// Examples of precedence mattering:</span>
+<span class="num">2</span> + <span class="num">3</span> * <span class="num">4</span>          <span class="cm">// → 14  (* before +)</span>
+(<span class="num">2</span> + <span class="num">3</span>) * <span class="num">4</span>        <span class="cm">// → 20  (parentheses first)</span>
+<span class="num">10</span> % <span class="num">3</span> + <span class="num">1</span>          <span class="cm">// → 2   (% before +: 10%3=1, 1+1=2)</span>
+!<span class="kw">true</span> || <span class="kw">false</span>    <span class="cm">// → false (! applied first: !true=false, false||false=false)</span>
+<span class="num">3</span> &gt; <span class="num">2</span> &amp;&amp; <span class="num">1</span> &lt; <span class="num">5</span>    <span class="cm">// → true  (both comparisons done before &&)</span></pre>
+  </div>
+
+  <div class="subsection">
+    <h3>Exception types — what they mean and when they occur</h3>
+    <p>The AP exam tests whether you can identify which exception a piece of code will throw, or whether code will throw an exception at all. You need to know these five by name and cause.</p>
+    <table>
+      <tr><th>Exception</th><th>Cause</th><th>Example code</th></tr>
+      <tr><td><code>ArithmeticException</code></td><td>Integer division by zero. Does NOT apply to double division (which gives Infinity instead).</td><td><code>int x = 5 / 0;</code></td></tr>
+      <tr><td><code>NullPointerException</code></td><td>Calling a method or accessing a field on a null reference.</td><td><code>String s = null; s.length();</code></td></tr>
+      <tr><td><code>ArrayIndexOutOfBoundsException</code></td><td>Accessing an array with an index that is negative or ≥ length.</td><td><code>int[] a = new int[3]; a[3];</code></td></tr>
+      <tr><td><code>IndexOutOfBoundsException</code></td><td>Accessing an ArrayList with an index that is negative or ≥ size().</td><td><code>list.get(list.size());</code></td></tr>
+      <tr><td><code>StackOverflowError</code></td><td>Infinite recursion — a recursive method that never reaches its base case and keeps calling itself until memory runs out.</td><td>Recursive method with no base case</td></tr>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <h3>Quick reference: things you must know from memory for MCQ</h3>
+    <p>The Java Quick Reference is only available during Section II (FRQs). During the 42 MCQs, you have nothing. The following must be memorized:</p>
+    <ul>
+      <li>All arithmetic operators and the integer division rule</li>
+      <li>All boolean operators (&amp;&amp;, ||, !) and De Morgan's Laws</li>
+      <li>For loop and while loop syntax</li>
+      <li>Array declaration, initialization, and access syntax</li>
+      <li>Array <code>.length</code> property (not a method — no parentheses)</li>
+      <li>ArrayList <code>.size()</code>, <code>.get(i)</code>, <code>.add()</code>, <code>.remove(i)</code>, <code>.set(i, obj)</code></li>
+      <li>All String methods: <code>length()</code>, <code>substring()</code>, <code>indexOf()</code>, <code>equals()</code>, <code>compareTo()</code></li>
+      <li>All Math methods: <code>abs()</code>, <code>pow()</code>, <code>sqrt()</code>, <code>random()</code>, <code>max()</code>, <code>min()</code></li>
+      <li>Class structure: constructor, private fields, public methods, static vs instance</li>
+      <li>What each exception means and what causes it</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+<div style="text-align:center;font-family:'Courier New',monospace;font-size:12px;color:#888;padding:1.5rem 0;">
+  AP Computer Science A &nbsp;·&nbsp; Complete Study Guide &nbsp;·&nbsp; May 2026 Exam<br>
+  Unit 1: Using Objects &amp; Methods &nbsp;·&nbsp; Unit 2: Selection &amp; Iteration &nbsp;·&nbsp; Unit 3: Class Creation &nbsp;·&nbsp; Unit 4: Data Collections
+</div>
+
+</div>
+</body>
+</html>
